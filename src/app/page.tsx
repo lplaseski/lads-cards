@@ -111,6 +111,14 @@ export default function Home() {
                 ))}
               </div>
             </div>
+            <div className='flex gap-8'>
+              <BannerTag>Birthday</BannerTag>
+              <div className='grid grid-cols-[160px_160px] gap-4'>
+                {SECTIONS.birthday.map((card: CardType) => (
+                  <Card key={card.name.replaceAll(' ', '_')} {...card} />
+                ))}
+              </div>
+            </div>
           </div>
           <div className='grid flex-grow grid-cols-[repeat(auto-fill,_408px)] gap-8'>
             {BANNERS.map((banner) => (

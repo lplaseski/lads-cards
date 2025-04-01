@@ -26,7 +26,7 @@ const Overlay = ({ link }: OverlayProps) => {
     />
     )}
 </button>
-    {!isOwned && link && <a className="absolute bottom-4 left-4 bg-red-500 text-white rounded-xl p-2 hover:bg-red-600 leading-none" href={link} target='_blank' rel='noopener noreferrer'>YT</a>}
+    {!isOwned && link && <a className="absolute bottom-4 left-4 bg-red-500 text-white rounded-xl p-2 hover:bg-red-600 leading-none exclude-from-download" href={link} target='_blank' rel='noopener noreferrer'>YT</a>}
     </>
   );
 };

@@ -4,10 +4,15 @@ import React from 'react';
 import { toJpeg } from 'html-to-image';
 
 const DownloadBtn = () => {
+
+const filter = (node: HTMLElement) => {
+  const exclusionClasses = ['exclude-from-download', 'hidden'];
+    return !exclusionClasses.some((classname) => node.classList?.contains(classname));
+  };
   const handleDownload = () => {
     const element = document.querySelector('main');
     if (element) {
-      toJpeg(element, { cacheBust: true }).then((dataUrl) => {
+      toJpeg(element, { cacheBust: true, filter }).then((dataUrl) => {
         const link = document.createElement('a');
         link.download = 'my-image-name.jpeg';
         link.href = dataUrl;
