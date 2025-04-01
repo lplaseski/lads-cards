@@ -6,4 +6,5 @@ export interface CardType {
   order: number | string;
   time: string;
   character: string;
+  yt_video: string;
 }

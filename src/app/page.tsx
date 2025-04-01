@@ -56,7 +56,7 @@ cards.forEach((card) => {
     SECTIONS.solo[Number(card.order) - 1] = card;
   } else if (card.banner === 'birthday') {
     SECTIONS.birthday[Number(card.order) - 1] = card;
-  } else if (card.character === 'Xavier' || card.character === 'Zayne'){
+  } else {
     if (!SECTIONS.limited[card.banner]) {
       SECTIONS.limited[card.banner] = [];
     }
@@ -68,7 +68,7 @@ export default function Home() {
   return (
     <div className='flex min-h-screen items-center justify-center gap-16 bg-black p-20 font-[family-name:var(--font-geist-sans)]'>
       <main
-        className='flex w-full flex-col border-2 bg-white gap-8'
+        className='flex w-full flex-col gap-8 border-2 bg-white'
         style={{ minHeight: 'calc(100vh - 160px)' }}
       >
         <div className='relative flex h-100 w-full'>
@@ -102,7 +102,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          {/* <div className='flex flex-col gap-8'>
+          <div className='flex flex-col gap-8'>
             <div className='flex gap-8'>
               <BannerTag>Solo</BannerTag>
               <div className='grid grid-cols-[160px_160px] gap-4'>
@@ -111,12 +111,12 @@ export default function Home() {
                 ))}
               </div>
             </div>
-          </div> */}
-          <div className='flex-grow grid grid-cols-[repeat(auto-fill,_408px)] gap-8 grid-rows-[repeat(auto-fill,_minmax(200px,_max-content))]'>
+          </div>
+          <div className='grid flex-grow grid-cols-[repeat(auto-fill,_408px)] gap-8'>
             {BANNERS.map((banner) => (
               <div key={banner} className='flex gap-8'>
                 <BannerTag>{banner}</BannerTag>
-                <div className='grid grid-cols-[160px_160px] gap-4'>
+                <div className='grid grid-cols-[160px_160px] grid-rows-[max-content] gap-4'>
                   {SECTIONS.limited[banner]?.map?.((card: CardType) => (
                     <Card key={card.name.replaceAll(' ', '_')} {...card} />
                   ))}

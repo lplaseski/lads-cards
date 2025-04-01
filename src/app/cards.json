@@ -6,7 +6,8 @@
     "stellacrum": "green",
     "order": 1,
     "time": "solar",
-    "character": "Xavier"
+    "character": "Xavier",
+    "yt_video": ""
   },
   {
     "type": "myth_standard",
@@ -15,7 +16,8 @@
     "stellacrum": "green",
     "order": 2,
     "time": "solar",
-    "character": "Xavier"
+    "character": "Xavier",
+    "yt_video": ""
   },
   {
     "type": "myth_limited",
@@ -24,7 +26,8 @@
     "stellacrum": "yellow",
     "order": 1,
     "time": "solar",
-    "character": "Xavier"
+    "character": "Xavier",
+    "yt_video": ""
   },
   {
     "type": "myth_limited",
@@ -33,7 +36,8 @@
     "stellacrum": "yellow",
     "order": 2,
     "time": "solar",
-    "character": "Xavier"
+    "character": "Xavier",
+    "yt_video": ""
   },
   {
     "type": "myth_limited",
@@ -42,7 +46,8 @@
     "stellacrum": "pink",
     "order": 1,
     "time": "solar",
-    "character": "Rafayel"
+    "character": "Rafayel",
+    "yt_video": ""
   },
   {
     "type": "myth_limited",
@@ -51,7 +56,8 @@
     "stellacrum": "pink",
     "order": 2,
     "time": "solar",
-    "character": "Rafayel"
+    "character": "Rafayel",
+    "yt_video": ""
   },
   {
     "type": "myth_limited",
@@ -60,7 +66,8 @@
     "stellacrum": "red",
     "order": 1,
     "time": "solar",
-    "character": "Zayne"
+    "character": "Zayne",
+    "yt_video": ""
   },
   {
     "type": "myth_limited",
@@ -69,7 +76,8 @@
     "stellacrum": "red",
     "order": 2,
     "time": "solar",
-    "character": "Zayne"
+    "character": "Zayne",
+    "yt_video": ""
   },
   {
     "type": "myth_limited",
@@ -78,7 +86,8 @@
     "stellacrum": "green",
     "order": 1,
     "time": "solar",
-    "character": "Sylus"
+    "character": "Sylus",
+    "yt_video": ""
   },
   {
     "type": "myth_limited",
@@ -87,7 +96,8 @@
     "stellacrum": "green",
     "order": 2,
     "time": "solar",
-    "character": "Sylus"
+    "character": "Sylus",
+    "yt_video": ""
   },
   {
     "type": "myth_limited",
@@ -96,7 +106,8 @@
     "stellacrum": "purple",
     "order": 1,
     "time": "solar",
-    "character": "Caleb"
+    "character": "Caleb",
+    "yt_video": ""
   },
   {
     "type": "myth_limited",
@@ -105,7 +116,8 @@
     "stellacrum": "purple",
     "order": 2,
     "time": "solar",
-    "character": "Caleb"
+    "character": "Caleb",
+    "yt_video": ""
   },
   {
     "type": "myth_standard",
@@ -114,7 +126,8 @@
     "stellacrum": "pink",
     "order": 1,
     "time": "solar",
-    "character": "Sylus"
+    "character": "Sylus",
+    "yt_video": ""
   },
   {
     "type": "myth_standard",
@@ -123,7 +136,8 @@
     "stellacrum": "pink",
     "order": 2,
     "time": "solar",
-    "character": "Sylus"
+    "character": "Sylus",
+    "yt_video": ""
   },
   {
     "type": "myth_standard",
@@ -132,7 +146,8 @@
     "stellacrum": "purple",
     "order": 1,
     "time": "solar",
-    "character": "Rafayel"
+    "character": "Rafayel",
+    "yt_video": ""
   },
   {
     "type": "myth_standard",
@@ -141,7 +156,8 @@
     "stellacrum": "purple",
     "order": 2,
     "time": "solar",
-    "character": "Rafayel"
+    "character": "Rafayel",
+    "yt_video": ""
   },
   {
     "type": "myth_standard",
@@ -150,7 +166,8 @@
     "stellacrum": "red",
     "order": 1,
     "time": "solar",
-    "character": "Caleb"
+    "character": "Caleb",
+    "yt_video": ""
   },
   {
     "type": "myth_standard",
@@ -159,7 +176,8 @@
     "stellacrum": "red",
     "order": 2,
     "time": "solar",
-    "character": "Caleb"
+    "character": "Caleb",
+    "yt_video": ""
   },
   {
     "type": "myth_standard",
@@ -168,7 +186,8 @@
     "stellacrum": "blue",
     "order": 1,
     "time": "solar",
-    "character": "Zayne"
+    "character": "Zayne",
+    "yt_video": ""
   },
   {
     "type": "myth_standard",
@@ -177,7 +196,8 @@
     "stellacrum": "blue",
     "order": 2,
     "time": "solar",
-    "character": "Zayne"
+    "character": "Zayne",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -186,7 +206,8 @@
     "stellacrum": "yellow",
     "order": "",
     "time": "lunar",
-    "character": "Xavier"
+    "character": "Xavier",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -195,7 +216,8 @@
     "stellacrum": "red",
     "order": "",
     "time": "lunar",
-    "character": "Zayne"
+    "character": "Zayne",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -204,7 +226,8 @@
     "stellacrum": "pink",
     "order": "",
     "time": "lunar",
-    "character": "Rafayel"
+    "character": "Rafayel",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -213,7 +236,8 @@
     "stellacrum": "green",
     "order": "",
     "time": "lunar",
-    "character": "Xavier"
+    "character": "Xavier",
+    "yt_video": "https://www.youtube.com/watch?v=usS-iCz1FyM"
   },
   {
     "type": "limited",
@@ -222,7 +246,8 @@
     "stellacrum": "blue",
     "order": "",
     "time": "lunar",
-    "character": "Zayne"
+    "character": "Zayne",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -231,7 +256,8 @@
     "stellacrum": "purple",
     "order": "",
     "time": "lunar",
-    "character": "Rafayel"
+    "character": "Rafayel",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -240,16 +266,18 @@
     "stellacrum": "green",
     "order": "",
     "time": "lunar",
-    "character": "Xavier"
+    "character": "Xavier",
+    "yt_video": ""
   },
   {
     "type": "limited",
-    "name": "Snowy Serenity",
+    "name": "Snow Serenity",
     "banner": "Entwined Shadows",
     "stellacrum": "blue",
     "order": "",
     "time": "lunar",
-    "character": "Zayne"
+    "character": "Zayne",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -258,7 +286,8 @@
     "stellacrum": "purple",
     "order": "",
     "time": "lunar",
-    "character": "Rafayel"
+    "character": "Rafayel",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -267,7 +296,8 @@
     "stellacrum": "pink",
     "order": "",
     "time": "lunar",
-    "character": "Xavier"
+    "character": "Xavier",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -276,7 +306,8 @@
     "stellacrum": "yellow",
     "order": "",
     "time": "lunar",
-    "character": "Zayne"
+    "character": "Zayne",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -285,7 +316,8 @@
     "stellacrum": "red",
     "order": "",
     "time": "lunar",
-    "character": "Rafayel"
+    "character": "Rafayel",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -294,7 +326,8 @@
     "stellacrum": "green",
     "order": "",
     "time": "lunar",
-    "character": "Sylus"
+    "character": "Sylus",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -303,7 +336,8 @@
     "stellacrum": "pink",
     "order": "",
     "time": "lunar",
-    "character": "Xavier"
+    "character": "Xavier",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -312,7 +346,8 @@
     "stellacrum": "yellow",
     "order": "",
     "time": "lunar",
-    "character": "Zayne"
+    "character": "Zayne",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -321,7 +356,8 @@
     "stellacrum": "blue",
     "order": "",
     "time": "lunar",
-    "character": "Rafayel"
+    "character": "Rafayel",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -330,7 +366,8 @@
     "stellacrum": "pink",
     "order": "",
     "time": "lunar",
-    "character": "Sylus"
+    "character": "Sylus",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -339,7 +376,8 @@
     "stellacrum": "green",
     "order": "",
     "time": "lunar",
-    "character": "Xavier"
+    "character": "Xavier",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -348,7 +386,8 @@
     "stellacrum": "blue",
     "order": "",
     "time": "lunar",
-    "character": "Zayne"
+    "character": "Zayne",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -357,7 +396,8 @@
     "stellacrum": "purple",
     "order": "",
     "time": "lunar",
-    "character": "Rafayel"
+    "character": "Rafayel",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -366,7 +406,8 @@
     "stellacrum": "green",
     "order": "",
     "time": "lunar",
-    "character": "Sylus"
+    "character": "Sylus",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -375,7 +416,8 @@
     "stellacrum": "purple",
     "order": "",
     "time": "lunar",
-    "character": "Xavier"
+    "character": "Xavier",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -384,7 +426,8 @@
     "stellacrum": "green",
     "order": "",
     "time": "lunar",
-    "character": "Zayne"
+    "character": "Zayne",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -393,7 +436,8 @@
     "stellacrum": "green",
     "order": "",
     "time": "lunar",
-    "character": "Rafayel"
+    "character": "Rafayel",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -402,7 +446,8 @@
     "stellacrum": "pink",
     "order": "",
     "time": "lunar",
-    "character": "Sylus"
+    "character": "Sylus",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -411,43 +456,48 @@
     "stellacrum": "pink",
     "order": "",
     "time": "lunar",
-    "character": "Xavier"
+    "character": "Xavier",
+    "yt_video": ""
   },
   {
     "type": "limited",
     "name": "Immediate Disorder",
-    "banner": "Tomorrow's Catch-22",
+    "banner": "Tomorrow's Catch-23",
     "stellacrum": "yellow",
     "order": "",
     "time": "lunar",
-    "character": "Zayne"
+    "character": "Zayne",
+    "yt_video": ""
   },
   {
     "type": "limited",
     "name": "Extreme Dose",
-    "banner": "Tomorrow's Catch-22",
+    "banner": "Tomorrow's Catch-24",
     "stellacrum": "red",
     "order": "",
     "time": "lunar",
-    "character": "Rafayel"
+    "character": "Rafayel",
+    "yt_video": ""
   },
   {
     "type": "limited",
     "name": "Innocent Birdcage",
-    "banner": "Tomorrow's Catch-22",
+    "banner": "Tomorrow's Catch-25",
     "stellacrum": "purple",
     "order": "",
     "time": "lunar",
-    "character": "Sylus"
+    "character": "Sylus",
+    "yt_video": ""
   },
   {
     "type": "limited",
     "name": "Tainted Cuts",
-    "banner": "Tomorrow's Catch-22",
+    "banner": "Tomorrow's Catch-26",
     "stellacrum": "purple",
     "order": "",
     "time": "lunar",
-    "character": "Caleb"
+    "character": "Caleb",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -456,7 +506,8 @@
     "stellacrum": "pink",
     "order": 1,
     "time": "lunar",
-    "character": "Rafayel"
+    "character": "Rafayel",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -465,7 +516,8 @@
     "stellacrum": "red",
     "order": 2,
     "time": "lunar",
-    "character": "Zayne"
+    "character": "Zayne",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -474,7 +526,8 @@
     "stellacrum": "yellow",
     "order": 3,
     "time": "lunar",
-    "character": "Xavier"
+    "character": "Xavier",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -483,7 +536,8 @@
     "stellacrum": "yellow",
     "order": 4,
     "time": "lunar",
-    "character": "Xavier"
+    "character": "Xavier",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -492,7 +546,8 @@
     "stellacrum": "red",
     "order": 5,
     "time": "lunar",
-    "character": "Zayne"
+    "character": "Zayne",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -501,7 +556,8 @@
     "stellacrum": "pink",
     "order": 6,
     "time": "lunar",
-    "character": "Rafayel"
+    "character": "Rafayel",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -510,7 +566,8 @@
     "stellacrum": "green",
     "order": 7,
     "time": "lunar",
-    "character": "Sylus"
+    "character": "Sylus",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -519,7 +576,8 @@
     "stellacrum": "red",
     "order": 8,
     "time": "lunar",
-    "character": "Xavier"
+    "character": "Xavier",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -528,7 +586,8 @@
     "stellacrum": "red",
     "order": 9,
     "time": "lunar",
-    "character": "Rafayel"
+    "character": "Rafayel",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -537,7 +596,8 @@
     "stellacrum": "blue",
     "order": 10,
     "time": "lunar",
-    "character": "Sylus"
+    "character": "Sylus",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -546,7 +606,8 @@
     "stellacrum": "purple",
     "order": 11,
     "time": "lunar",
-    "character": "Zayne"
+    "character": "Zayne",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -555,7 +616,8 @@
     "stellacrum": "purple",
     "order": 12,
     "time": "lunar",
-    "character": "Caleb"
+    "character": "Caleb",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -564,7 +626,8 @@
     "stellacrum": "purple",
     "order": 13,
     "time": "lunar",
-    "character": "Zayne"
+    "character": "Zayne",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -573,7 +636,8 @@
     "stellacrum": "yellow",
     "order": 1,
     "time": "lunar",
-    "character": "Rafayel"
+    "character": "Rafayel",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -582,7 +646,8 @@
     "stellacrum": "pink",
     "order": 2,
     "time": "lunar",
-    "character": "Zayne"
+    "character": "Zayne",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -591,7 +656,8 @@
     "stellacrum": "blue",
     "order": 3,
     "time": "lunar",
-    "character": "Xavier"
+    "character": "Xavier",
+    "yt_video": ""
   },
   {
     "type": "limited",
@@ -600,6 +666,7 @@
     "stellacrum": "green",
     "order": 4,
     "time": "lunar",
-    "character": "Rafayel"
+    "character": "Rafayel",
+    "yt_video": ""
   }
 ]
