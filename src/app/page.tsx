@@ -4,6 +4,19 @@ import cards from './cards.json';
 
 import { CardType } from '../common/types';
 import Card from '@/common/Card';
+import BannerTag from '@/common/BannerTag';
+import DownloadBtn from '@/common/DownloadBtn';
+
+const BANNERS = [
+  'Veiled Whispers',
+  'Lingering Gaze',
+  'Entwined Shadows',
+  'Misty Invasion',
+  'Wander in Wonder',
+  'Yes, Cat Caretaker',
+  'Nightly Rendezvous',
+  "Tomorrow's Catch-22",
+];
 
 interface CardList {
   [key: string]: CardType[];
@@ -17,6 +30,9 @@ interface Sections {
   };
   solo: CardType[];
   birthday: CardType[];
+  limited: {
+    [key: string]: CardType[];
+  };
 }
 const SECTIONS: Sections = {
   myth: {
@@ -25,16 +41,26 @@ const SECTIONS: Sections = {
   },
   solo: [],
   birthday: [],
+  limited: {},
 };
 
 cards.forEach((card) => {
   if (card.type.startsWith('myth')) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [_, type] = card.type.split('_'); 
+    const [_, type] = card.type.split('_');
     if (!SECTIONS.myth?.[type]?.[card.character]) {
       SECTIONS.myth[type][card.character] = [];
     }
     SECTIONS.myth[type][card.character][Number(card.order) - 1] = card;
+  } else if (card.banner === 'solo') {
+    SECTIONS.solo[Number(card.order) - 1] = card;
+  } else if (card.banner === 'birthday') {
+    SECTIONS.birthday[Number(card.order) - 1] = card;
+  } else if (card.character === 'Xavier' || card.character === 'Zayne'){
+    if (!SECTIONS.limited[card.banner]) {
+      SECTIONS.limited[card.banner] = [];
+    }
+    SECTIONS.limited[card.banner].push(card);
   }
 });
 
@@ -42,7 +68,7 @@ export default function Home() {
   return (
     <div className='flex min-h-screen items-center justify-center gap-16 bg-black p-20 font-[family-name:var(--font-geist-sans)]'>
       <main
-        className='flex w-full max-w-250 flex-col border-2'
+        className='flex w-full flex-col border-2 bg-white gap-8'
         style={{ minHeight: 'calc(100vh - 160px)' }}
       >
         <div className='relative flex h-100 w-full'>
@@ -50,36 +76,57 @@ export default function Home() {
             fill
             src={banner}
             alt='Next.js logo'
-            style={{ objectFit: 'cover', objectPosition: 'center' }}
+            style={{ objectFit: 'cover', objectPosition: '0 20%' }}
           />
         </div>
-        <div className='flex'>
-          <div className='flex'>
-            <div className='flex w-10 items-center justify-center bg-white text-black'>
-              <span className='rotate-270 whitespace-nowrap'>
-                Limited Myths
-              </span>
+        <div className='flex flex-wrap gap-8 px-6 pb-6'>
+          <div className='flex flex-col gap-8'>
+            <div className='flex gap-8'>
+              <BannerTag>Limited Myths</BannerTag>
+              <div className='mb-4 grid grid-cols-[160px_160px_160px_160px] gap-4'>
+                {Object.values(SECTIONS.myth.limited)
+                  .flat()
+                  .map((card: CardType) => (
+                    <Card key={card.name.replaceAll(' ', '_')} {...card} />
+                  ))}
+              </div>
             </div>
-            <div className='mb-4 grid grid-cols-[160px_160px_160px_160px] gap-4'>
-              {Object.values(SECTIONS.myth.limited)
-                .flat()
-                .map((card: CardType) => (
+            <div className='flex gap-8'>
+              <BannerTag>Standard Myths</BannerTag>
+              <div className='grid grid-cols-[160px_160px_160px_160px] gap-4'>
+                {Object.values(SECTIONS.myth.standard)
+                  .flat()
+                  .map((card: CardType) => (
+                    <Card key={card.name.replaceAll(' ', '_')} {...card} />
+                  ))}
+              </div>
+            </div>
+          </div>
+          {/* <div className='flex flex-col gap-8'>
+            <div className='flex gap-8'>
+              <BannerTag>Solo</BannerTag>
+              <div className='grid grid-cols-[160px_160px] gap-4'>
+                {SECTIONS.solo.map((card: CardType) => (
                   <Card key={card.name.replaceAll(' ', '_')} {...card} />
                 ))}
               </div>
-          </div>
-          <div className='flex w-10 items-center justify-center bg-white text-black'>
-            <span className='rotate-270 whitespace-nowrap'>Standard Myths</span>
-          </div>
-          <div className='grid grid-cols-[160px_160px_160px_160px] gap-4'>
-            {Object.values(SECTIONS.myth.standard)
-              .flat()
-              .map((card: CardType) => (
-                <Card  key={card.name.replaceAll(' ', '_')} {...card} />
-              ))}
+            </div>
+          </div> */}
+          <div className='flex-grow grid grid-cols-[repeat(auto-fill,_408px)] gap-8 grid-rows-[repeat(auto-fill,_minmax(200px,_max-content))]'>
+            {BANNERS.map((banner) => (
+              <div key={banner} className='flex gap-8'>
+                <BannerTag>{banner}</BannerTag>
+                <div className='grid grid-cols-[160px_160px] gap-4'>
+                  {SECTIONS.limited[banner]?.map?.((card: CardType) => (
+                    <Card key={card.name.replaceAll(' ', '_')} {...card} />
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </main>
+      <DownloadBtn />
     </div>
   );
 }
