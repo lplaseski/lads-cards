@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="156.674 84.554 134.642 133.853" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <view id="view-1" viewBox="156.846 444.156 111.654 12.65">
+      <title>View 1</title>
+    </view>
+    <bx:export>
+      <bx:file format="svg"/>
+    </bx:export>
+  </defs>
+  <ellipse style="stroke: rgb(255, 207, 233); fill: rgb(233, 177, 205); stroke-width: 5px;" cx="223.214" cy="151.786" rx="59" ry="59"/>
+  <ellipse style="fill: rgb(233, 177, 205); stroke: rgb(255, 207, 233); stroke-width: 5px;" cx="223.305" cy="152.392" rx="42" ry="42"/>
+  <ellipse style="fill: rgb(255, 207, 233);" cx="223.831" cy="151.584" rx="23" ry="23"/>
+  <ellipse style="fill: rgb(255, 207, 233);" cx="192.029" cy="122.993" rx="10" ry="10"/>
+  <ellipse style="fill: rgb(255, 207, 233);" cx="257.935" cy="175.584" rx="10" ry="10"/>
+</svg>

@@ -15,7 +15,7 @@ const Card = ({ name, type, stellacrum, character, yt_video }: CardType) => {
         alt=''
         height={25}
         width={25}
-        src={`/stella/${stellacrum}.png`}
+        src={`/stella/${stellacrum}.svg`}
       />
       <Overlay name={name} link={yt_video} />
     </div>
