@@ -66,9 +66,9 @@ cards.forEach((card) => {
 
 export default function Home() {
   return (
-    <div className='flex min-h-screen items-center justify-center gap-16 bg-black p-20 font-[family-name:var(--font-geist-sans)]'>
+    <div className='flex min-h-screen items-center justify-center gap-16 bg-black p-20 font-[family-name:var(--font-geist-sans)] w-fit'>
       <main
-        className='flex w-full flex-col gap-8 border-2 bg-white'
+        className='flex w-full flex-col gap-8 border-2 bg-white min-w-536'
         style={{ minHeight: 'calc(100vh - 160px)' }}
       >
         <div className='relative flex h-100 w-full'>
