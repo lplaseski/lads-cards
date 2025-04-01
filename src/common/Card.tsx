@@ -2,20 +2,11 @@ import React from 'react';
 import { CardType } from './types';
 import Image from 'next/image';
 
-interface Props extends CardType {}
-
 const Card = ({
-  type,
   name,
-  banner,
   stellacrum,
-  order,
-  time,
   character,
-}: Props) => {
-  console.log(
-    `url("/myths/${character}_${encodeURIComponent(name.replaceAll(' ', '_'))}.jpeg")`
-  );
+}: CardType) => {
   const url = `/myths/${character}_${encodeURIComponent(name.replaceAll(' ', '_').replaceAll("'", ''))}.jpeg`;
   return (
     <div className='relative h-53 w-40 text-white'>

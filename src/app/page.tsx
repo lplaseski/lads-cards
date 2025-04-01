@@ -29,9 +29,10 @@ const SECTIONS: Sections = {
 
 cards.forEach((card) => {
   if (card.type.startsWith('myth')) {
-    const [_, type] = card.type.split('_');
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [_, type] = card.type.split('_'); 
     if (!SECTIONS.myth?.[type]?.[card.character]) {
-      const current = (SECTIONS.myth[type][card.character] = []);
+      SECTIONS.myth[type][card.character] = [];
     }
     SECTIONS.myth[type][card.character][Number(card.order) - 1] = card;
   }
@@ -63,7 +64,7 @@ export default function Home() {
               {Object.values(SECTIONS.myth.limited)
                 .flat()
                 .map((card: CardType) => (
-                  <Card {...card} />
+                  <Card key={card.name.replaceAll(' ', '_')} {...card} />
                 ))}
               </div>
           </div>
@@ -74,7 +75,7 @@ export default function Home() {
             {Object.values(SECTIONS.myth.standard)
               .flat()
               .map((card: CardType) => (
-                <Card {...card} />
+                <Card  key={card.name.replaceAll(' ', '_')} {...card} />
               ))}
           </div>
         </div>
