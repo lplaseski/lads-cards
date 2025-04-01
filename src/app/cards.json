@@ -1,0 +1,605 @@
+[
+  {
+    "type": "myth_standard",
+    "name": "Lightseeking Obsession",
+    "banner": "lightseeking",
+    "stellacrum": "green",
+    "order": 1,
+    "time": "solar",
+    "character": "Xavier"
+  },
+  {
+    "type": "myth_standard",
+    "name": "Lightseeking Shadowrend",
+    "banner": "lightseeking",
+    "stellacrum": "green",
+    "order": 2,
+    "time": "solar",
+    "character": "Xavier"
+  },
+  {
+    "type": "myth_limited",
+    "name": "Midnight Whispers",
+    "banner": "midnight",
+    "stellacrum": "yellow",
+    "order": 1,
+    "time": "solar",
+    "character": "Xavier"
+  },
+  {
+    "type": "myth_limited",
+    "name": "Midnight Rainfall",
+    "banner": "midnight",
+    "stellacrum": "yellow",
+    "order": 2,
+    "time": "solar",
+    "character": "Xavier"
+  },
+  {
+    "type": "myth_limited",
+    "name": "Temple's Promise",
+    "banner": "temple",
+    "stellacrum": "pink",
+    "order": 1,
+    "time": "solar",
+    "character": "Rafayel"
+  },
+  {
+    "type": "myth_limited",
+    "name": "Temple's Sunset",
+    "banner": "temple",
+    "stellacrum": "pink",
+    "order": 2,
+    "time": "solar",
+    "character": "Rafayel"
+  },
+  {
+    "type": "myth_limited",
+    "name": "Snowfall Encounter",
+    "banner": "snowfall",
+    "stellacrum": "red",
+    "order": 1,
+    "time": "solar",
+    "character": "Zayne"
+  },
+  {
+    "type": "myth_limited",
+    "name": "Snowfall Embrace",
+    "banner": "snowfall",
+    "stellacrum": "red",
+    "order": 2,
+    "time": "solar",
+    "character": "Zayne"
+  },
+  {
+    "type": "myth_limited",
+    "name": "Abyssal Blossom",
+    "banner": "abyssal",
+    "stellacrum": "green",
+    "order": 1,
+    "time": "solar",
+    "character": "Sylus"
+  },
+  {
+    "type": "myth_limited",
+    "name": "Abyssal Mark",
+    "banner": "abyssal",
+    "stellacrum": "green",
+    "order": 2,
+    "time": "solar",
+    "character": "Sylus"
+  },
+  {
+    "type": "myth_limited",
+    "name": "Loneroad Together",
+    "banner": "loneroad",
+    "stellacrum": "purple",
+    "order": 1,
+    "time": "solar",
+    "character": "Caleb"
+  },
+  {
+    "type": "myth_limited",
+    "name": "Loneroad Unreturned",
+    "banner": "loneroad",
+    "stellacrum": "purple",
+    "order": 2,
+    "time": "solar",
+    "character": "Caleb"
+  },
+  {
+    "type": "myth_standard",
+    "name": "Captivating Lesson",
+    "banner": "captivating",
+    "stellacrum": "pink",
+    "order": 1,
+    "time": "solar",
+    "character": "Sylus"
+  },
+  {
+    "type": "myth_standard",
+    "name": "Captivating Flavor",
+    "banner": "captivating",
+    "stellacrum": "pink",
+    "order": 2,
+    "time": "solar",
+    "character": "Sylus"
+  },
+  {
+    "type": "myth_standard",
+    "name": "Deep Sea Promise",
+    "banner": "deep_sea",
+    "stellacrum": "purple",
+    "order": 1,
+    "time": "solar",
+    "character": "Rafayel"
+  },
+  {
+    "type": "myth_standard",
+    "name": "Deep Sea Riches",
+    "banner": "deep_sea",
+    "stellacrum": "purple",
+    "order": 2,
+    "time": "solar",
+    "character": "Rafayel"
+  },
+  {
+    "type": "myth_standard",
+    "name": "Farspace Bloomfall",
+    "banner": "farspace",
+    "stellacrum": "red",
+    "order": 1,
+    "time": "solar",
+    "character": "Caleb"
+  },
+  {
+    "type": "myth_standard",
+    "name": "Farspace Deprivation",
+    "banner": "farspace",
+    "stellacrum": "red",
+    "order": 2,
+    "time": "solar",
+    "character": "Caleb"
+  },
+  {
+    "type": "myth_standard",
+    "name": "Forever Sealed",
+    "banner": "foreseer",
+    "stellacrum": "blue",
+    "order": 1,
+    "time": "solar",
+    "character": "Zayne"
+  },
+  {
+    "type": "myth_standard",
+    "name": "Promise Everlasting",
+    "banner": "foreseer",
+    "stellacrum": "blue",
+    "order": 2,
+    "time": "solar",
+    "character": "Zayne"
+  },
+  {
+    "type": "limited",
+    "name": "Tender Night",
+    "banner": "Veiled Whispers",
+    "stellacrum": "yellow",
+    "order": "",
+    "time": "lunar",
+    "character": "Xavier"
+  },
+  {
+    "type": "limited",
+    "name": "Drunken Intimacy",
+    "banner": "Veiled Whispers",
+    "stellacrum": "red",
+    "order": "",
+    "time": "lunar",
+    "character": "Zayne"
+  },
+  {
+    "type": "limited",
+    "name": "Tipsy Invitation",
+    "banner": "Veiled Whispers",
+    "stellacrum": "pink",
+    "order": "",
+    "time": "lunar",
+    "character": "Rafayel"
+  },
+  {
+    "type": "limited",
+    "name": "Romantic Afternoon",
+    "banner": "Lingering Gaze",
+    "stellacrum": "green",
+    "order": "",
+    "time": "lunar",
+    "character": "Xavier"
+  },
+  {
+    "type": "limited",
+    "name": "Heart Within Reach",
+    "banner": "Lingering Gaze",
+    "stellacrum": "blue",
+    "order": "",
+    "time": "lunar",
+    "character": "Zayne"
+  },
+  {
+    "type": "limited",
+    "name": "Whispers",
+    "banner": "Lingering Gaze",
+    "stellacrum": "purple",
+    "order": "",
+    "time": "lunar",
+    "character": "Rafayel"
+  },
+  {
+    "type": "limited",
+    "name": "21 Days",
+    "banner": "Entwined Shadows",
+    "stellacrum": "green",
+    "order": "",
+    "time": "lunar",
+    "character": "Xavier"
+  },
+  {
+    "type": "limited",
+    "name": "Snow Serenity",
+    "banner": "Entwined Shadows",
+    "stellacrum": "blue",
+    "order": "",
+    "time": "lunar",
+    "character": "Zayne"
+  },
+  {
+    "type": "limited",
+    "name": "Floral Promise",
+    "banner": "Entwined Shadows",
+    "stellacrum": "purple",
+    "order": "",
+    "time": "lunar",
+    "character": "Rafayel"
+  },
+  {
+    "type": "limited",
+    "name": "No Restraint",
+    "banner": "Misty Invasion",
+    "stellacrum": "pink",
+    "order": "",
+    "time": "lunar",
+    "character": "Xavier"
+  },
+  {
+    "type": "limited",
+    "name": "Hidden Motive",
+    "banner": "Misty Invasion",
+    "stellacrum": "yellow",
+    "order": "",
+    "time": "lunar",
+    "character": "Zayne"
+  },
+  {
+    "type": "limited",
+    "name": "Omnipotent Perception",
+    "banner": "Misty Invasion",
+    "stellacrum": "red",
+    "order": "",
+    "time": "lunar",
+    "character": "Rafayel"
+  },
+  {
+    "type": "limited",
+    "name": "Lost Oasis",
+    "banner": "Misty Invasion",
+    "stellacrum": "green",
+    "order": "",
+    "time": "lunar",
+    "character": "Sylus"
+  },
+  {
+    "type": "limited",
+    "name": "Floral Blessing",
+    "banner": "Wander in Wonder",
+    "stellacrum": "pink",
+    "order": "",
+    "time": "lunar",
+    "character": "Xavier"
+  },
+  {
+    "type": "limited",
+    "name": "Moonlit Dream",
+    "banner": "Wander in Wonder",
+    "stellacrum": "yellow",
+    "order": "",
+    "time": "lunar",
+    "character": "Zayne"
+  },
+  {
+    "type": "limited",
+    "name": "Gem Affection",
+    "banner": "Wander in Wonder",
+    "stellacrum": "blue",
+    "order": "",
+    "time": "lunar",
+    "character": "Rafayel"
+  },
+  {
+    "type": "limited",
+    "name": "Grassland Romance",
+    "banner": "Wander in Wonder",
+    "stellacrum": "pink",
+    "order": "",
+    "time": "lunar",
+    "character": "Sylus"
+  },
+  {
+    "type": "limited",
+    "name": "Floof Attack",
+    "banner": "Yes, Cat Caretaker",
+    "stellacrum": "green",
+    "order": "",
+    "time": "lunar",
+    "character": "Xavier"
+  },
+  {
+    "type": "limited",
+    "name": "Fluffy Treatment",
+    "banner": "Yes, Cat Caretaker",
+    "stellacrum": "blue",
+    "order": "",
+    "time": "lunar",
+    "character": "Zayne"
+  },
+  {
+    "type": "limited",
+    "name": "Tailwag Moment",
+    "banner": "Yes, Cat Caretaker",
+    "stellacrum": "purple",
+    "order": "",
+    "time": "lunar",
+    "character": "Rafayel"
+  },
+  {
+    "type": "limited",
+    "name": "Goodcat Code",
+    "banner": "Yes, Cat Caretaker",
+    "stellacrum": "green",
+    "order": "",
+    "time": "lunar",
+    "character": "Sylus"
+  },
+  {
+    "type": "limited",
+    "name": "Misty Silhouette",
+    "banner": "Nightly Rendezvous",
+    "stellacrum": "purple",
+    "order": "",
+    "time": "lunar",
+    "character": "Xavier"
+  },
+  {
+    "type": "limited",
+    "name": "Absolute Zeal",
+    "banner": "Nightly Rendezvous",
+    "stellacrum": "green",
+    "order": "",
+    "time": "lunar",
+    "character": "Zayne"
+  },
+  {
+    "type": "limited",
+    "name": "Intertidal Zone",
+    "banner": "Nightly Rendezvous",
+    "stellacrum": "green",
+    "order": "",
+    "time": "lunar",
+    "character": "Rafayel"
+  },
+  {
+    "type": "limited",
+    "name": "Night of Secrecy",
+    "banner": "Nightly Rendezvous",
+    "stellacrum": "pink",
+    "order": "",
+    "time": "lunar",
+    "character": "Sylus"
+  },
+  {
+    "type": "limited",
+    "name": "Deluded Fiction",
+    "banner": "Tomorrow's Catch 22",
+    "stellacrum": "pink",
+    "order": "",
+    "time": "lunar",
+    "character": "Xavier"
+  },
+  {
+    "type": "limited",
+    "name": "Immediate Disorder",
+    "banner": "Tomorrow's Catch 22",
+    "stellacrum": "yellow",
+    "order": "",
+    "time": "lunar",
+    "character": "Zayne"
+  },
+  {
+    "type": "limited",
+    "name": "Extreme Dose",
+    "banner": "Tomorrow's Catch 22",
+    "stellacrum": "red",
+    "order": "",
+    "time": "lunar",
+    "character": "Rafayel"
+  },
+  {
+    "type": "limited",
+    "name": "Innocent Birdcage",
+    "banner": "Tomorrow's Catch 22",
+    "stellacrum": "purple",
+    "order": "",
+    "time": "lunar",
+    "character": "Sylus"
+  },
+  {
+    "type": "limited",
+    "name": "Tainted Cuts",
+    "banner": "Tomorrow's Catch 22",
+    "stellacrum": "purple",
+    "order": "",
+    "time": "lunar",
+    "character": "Caleb"
+  },
+  {
+    "type": "limited",
+    "name": "Fireworks Vow",
+    "banner": "solo",
+    "stellacrum": "pink",
+    "order": 1,
+    "time": "lunar",
+    "character": "Rafayel"
+  },
+  {
+    "type": "limited",
+    "name": "Medical Rescue",
+    "banner": "solo",
+    "stellacrum": "red",
+    "order": 2,
+    "time": "lunar",
+    "character": "Zayne"
+  },
+  {
+    "type": "limited",
+    "name": "Heartstring Symphony",
+    "banner": "solo",
+    "stellacrum": "yellow",
+    "order": 3,
+    "time": "lunar",
+    "character": "Xavier"
+  },
+  {
+    "type": "limited",
+    "name": "Faint Sensation",
+    "banner": "solo",
+    "stellacrum": "yellow",
+    "order": 4,
+    "time": "lunar",
+    "character": "Xavier"
+  },
+  {
+    "type": "limited",
+    "name": "Exclusive Tutorial",
+    "banner": "solo",
+    "stellacrum": "red",
+    "order": 5,
+    "time": "lunar",
+    "character": "Zayne"
+  },
+  {
+    "type": "limited",
+    "name": "Private Trip",
+    "banner": "solo",
+    "stellacrum": "pink",
+    "order": 6,
+    "time": "lunar",
+    "character": "Rafayel"
+  },
+  {
+    "type": "limited",
+    "name": "No Defense Zone",
+    "banner": "solo",
+    "stellacrum": "green",
+    "order": 7,
+    "time": "lunar",
+    "character": "Sylus"
+  },
+  {
+    "type": "limited",
+    "name": "Silvery Polyphony",
+    "banner": "solo",
+    "stellacrum": "red",
+    "order": 8,
+    "time": "lunar",
+    "character": "Xavier"
+  },
+  {
+    "type": "limited",
+    "name": "Into the Canvas",
+    "banner": "solo",
+    "stellacrum": "red",
+    "order": 9,
+    "time": "lunar",
+    "character": "Rafayel"
+  },
+  {
+    "type": "limited",
+    "name": "Radiant Brilliance",
+    "banner": "solo",
+    "stellacrum": "blue",
+    "order": 10,
+    "time": "lunar",
+    "character": "Sylus"
+  },
+  {
+    "type": "limited",
+    "name": "Heartstring Notes",
+    "banner": "solo",
+    "stellacrum": "purple",
+    "order": 11,
+    "time": "lunar",
+    "character": "Zayne"
+  },
+  {
+    "type": "limited",
+    "name": "Painful Signal",
+    "banner": "solo",
+    "stellacrum": "purple",
+    "order": 12,
+    "time": "lunar",
+    "character": "Caleb"
+  },
+  {
+    "type": "limited",
+    "name": "Everlasting Wish",
+    "banner": "solo",
+    "stellacrum": "purple",
+    "order": 13,
+    "time": "lunar",
+    "character": "Zayne"
+  },
+  {
+    "type": "limited",
+    "name": "Unforgettable Adventures",
+    "banner": "birthday",
+    "stellacrum": "yellow",
+    "order": 1,
+    "time": "lunar",
+    "character": "Rafayel"
+  },
+  {
+    "type": "limited",
+    "name": "Eternal Attachment",
+    "banner": "birthday",
+    "stellacrum": "pink",
+    "order": 2,
+    "time": "lunar",
+    "character": "Zayne"
+  },
+  {
+    "type": "limited",
+    "name": "Celestial Message",
+    "banner": "birthday",
+    "stellacrum": "blue",
+    "order": 3,
+    "time": "lunar",
+    "character": "Xavier"
+  },
+  {
+    "type": "limited",
+    "name": "Boundless Seas",
+    "banner": "birthday",
+    "stellacrum": "green",
+    "order": 4,
+    "time": "lunar",
+    "character": "Rafayel"
+  }
+]
