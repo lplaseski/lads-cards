@@ -12,7 +12,7 @@ const filter = (node: HTMLElement) => {
   const handleDownload = () => {
     const element = document.querySelector('main');
     if (element) {
-      toJpeg(element, { cacheBust: true, filter }).then((dataUrl) => {
+      toJpeg(element, { filter }).then((dataUrl) => {
         const link = document.createElement('a');
         link.download = 'my-image-name.jpeg';
         link.href = dataUrl;
