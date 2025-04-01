@@ -14,7 +14,7 @@ const filter = (node: HTMLElement) => {
     if (element) {
       toJpeg(element, { filter }).then((dataUrl) => {
         const link = document.createElement('a');
-        link.download = 'my-image-name.jpeg';
+        link.download = 'lads-cards.jpeg';
         link.href = dataUrl;
         link.click();
       });
