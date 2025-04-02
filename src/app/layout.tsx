@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono, Noto_Serif } from 'next/font/google';
+import { Noto_Sans, Geist_Mono, Noto_Serif } from 'next/font/google';
 import './globals.css';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const geistSans = Noto_Sans({
+  variable: '--font-noto-sans',
   subsets: ['latin'],
 });
 

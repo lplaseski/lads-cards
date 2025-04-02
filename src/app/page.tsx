@@ -94,12 +94,12 @@ export default async function Home() {
   });
 
   return (
-    <div className='flex min-h-screen min-w-fit items-center justify-center gap-16 bg-black p-20 font-[family-name:var(--font-geist-sans)]'>
+    <div className='flex min-h-screen min-w-fit items-center justify-center gap-16 bg-black p-20 font-[family-name:var(--font-noto-sans)]'>
       <main
-        className='flex w-full min-w-536 flex-col gap-8 border-2 bg-white'
+        className='flex w-full min-w-536 flex-col border-2 bg-white'
         style={{ minHeight: 'calc(100vh - 160px)' }}
       >
-        <div className='relative flex h-100 w-full'>
+        <div className='relative flex h-120 w-full'>
           <Image
             fill
             src={banner}
@@ -107,7 +107,16 @@ export default async function Home() {
             style={{ objectFit: 'cover', objectPosition: '0 20%' }}
           />
         </div>
-        <div className='flex flex-wrap gap-8 px-6 pb-6'>
+        <div className='flex p-4 gap-4 items-center justify-center bg-sky-950 text-4xl font-serif text-white uppercase'>
+        <Image
+            alt='Love and Deepspace'
+            height={150}
+            width={150}
+            src='/logo.svg'
+          />
+          <span>5 Star Memory Chart</span>
+        </div>
+        <div className='flex flex-wrap gap-8 p-6'>
           <div className='flex flex-col gap-8'>
             <div className='flex gap-8'>
               <BannerTag>Limited Myths</BannerTag>

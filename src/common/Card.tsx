@@ -13,17 +13,20 @@ const Card = ({ name, type, stellacrum, character, yt_video }: CardType) => {
   
   const url = `/${folder}/${character}_${encodeURIComponent((name || '').replaceAll(' ', '_').replaceAll("'", ''))}.jpeg`;
   return (
-    <div className='group relative h-53 w-40 text-white [&:has([data-locked="true"])_img]:grayscale-85'>
-      <Image alt={name || ''} src={url} fill style={{ objectFit: 'cover' }} />
-      <Image
-        style={{ background: 'transparent' }}
-        className='absolute top-1 left-1 bg-transparent'
-        alt=''
-        height={25}
-        width={25}
-        src={`/stella/${stellacrum}.svg`}
-      />
-      <Overlay name={name || ''} link={yt_video || ''} />
+    <div className="flex flex-col items-center gap-2">
+      <div className='group relative h-55 w-40 [&:has([data-locked="true"])_img]:grayscale-85'>
+        <Image alt={name || ''} src={url} fill style={{ objectFit: 'cover' }} />
+        <Image
+          style={{ background: 'transparent' }}
+          className='absolute top-1 left-1 bg-transparent'
+          alt=''
+          height={25}
+          width={25}
+          src={`/stella/${stellacrum}.svg`}
+        />
+        <Overlay name={name || ''} link={yt_video || ''} />
+      </div>
+      <p className=" text-center font-medium">{name}</p>
     </div>
   );
 };
