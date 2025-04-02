@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import banner from '../../public/banner.jpg';
-import cards from './cards.json';
+import getSheetData from '@/actions/getSheetData';
 
 import { CardType } from '../common/types';
 import Card from '@/common/Card';
@@ -33,38 +33,66 @@ interface Sections {
   limited: {
     [key: string]: CardType[];
   };
-}
-const SECTIONS: Sections = {
-  myth: {
-    limited: {},
-    standard: {},
-  },
-  solo: [],
-  birthday: [],
-  limited: {},
-};
-
-cards.forEach((card) => {
-  if (card.type.startsWith('myth')) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [_, type] = card.type.split('_');
-    if (!SECTIONS.myth?.[type]?.[card.character]) {
-      SECTIONS.myth[type][card.character] = [];
-    }
-    SECTIONS.myth[type][card.character][Number(card.order) - 1] = card;
-  } else if (card.banner === 'solo') {
-    SECTIONS.solo[Number(card.order) - 1] = card;
-  } else if (card.banner === 'birthday') {
-    SECTIONS.birthday[Number(card.order) - 1] = card;
-  } else {
-    if (!SECTIONS.limited[card.banner]) {
-      SECTIONS.limited[card.banner] = [];
-    }
-    SECTIONS.limited[card.banner].push(card);
+  standard: {
+    [key: string]: CardType[];
+    Xavier: CardType[];
+    Zayne: CardType[];
+    Rafayel: CardType[];
+    Sylus: CardType[];
+    Caleb: CardType[];
   }
-});
+}
 
-export default function Home() {
+export default async function Home() {
+  const cards = await getSheetData();
+  const SECTIONS: Sections = {
+    myth: {
+      limited: {},
+      standard: {},
+    },
+    solo: [],
+    birthday: [],
+    limited: {},
+    standard: {
+      Xavier: [],
+      Zayne: [],
+      Rafayel: [],
+      Sylus: [],
+      Caleb: [],
+    }
+  };
+
+  cards.forEach((card) => {
+    if (card?.type?.startsWith('myth')) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const [_, type] = card.type.split('_');
+      if (card.character) {
+        if (!SECTIONS.myth?.[type]?.[card.character]) {
+          SECTIONS.myth[type][card.character] = [];
+        }
+        SECTIONS.myth[type][card.character][Number(card.order) - 1] = card;
+      }
+    } else if (card.banner === 'solo') {
+      SECTIONS.solo[Number(card.order) - 1] = card;
+    } else if (card.banner === 'birthday') {
+      SECTIONS.birthday[Number(card.order) - 1] = card;
+    } else if (card.type === 'standard') {
+      if (card.character) {
+        if (!SECTIONS.standard?.[card.character]) {
+          SECTIONS.standard[card.character] = [];
+        }
+        SECTIONS.standard[card.character].push(card);
+      }
+    } else {
+      if (card.banner) {
+        if (!SECTIONS.limited[card.banner]) {
+          SECTIONS.limited[card.banner] = [];
+        }
+        SECTIONS.limited[card.banner].push(card);
+      }
+    }
+  });
+
   return (
     <div className='flex min-h-screen min-w-fit items-center justify-center gap-16 bg-black p-20 font-[family-name:var(--font-geist-sans)]'>
       <main
@@ -87,7 +115,7 @@ export default function Home() {
                 {Object.values(SECTIONS.myth.limited)
                   .flat()
                   .map((card: CardType) => (
-                    <Card key={card.name.replaceAll(' ', '_')} {...card} />
+                    <Card key={(card.name || '').replaceAll(' ', '_')} {...card} />
                   ))}
               </div>
             </div>
@@ -97,7 +125,32 @@ export default function Home() {
                 {Object.values(SECTIONS.myth.standard)
                   .flat()
                   .map((card: CardType) => (
-                    <Card key={card.name.replaceAll(' ', '_')} {...card} />
+                    <Card key={(card.name || '').replaceAll(' ', '_')} {...card} />
+                  ))}
+              </div>
+            </div>
+            <div className='flex gap-8'>
+              <BannerTag>Standard</BannerTag>
+              <div className='grid grid-cols-[160px_160px_160px_160px] gap-4'>
+                {SECTIONS.standard.Xavier
+                  .map((card: CardType) => (
+                    <Card key={(card.name || '').replaceAll(' ', '_')} {...card} />
+                  ))}
+                  {SECTIONS.standard.Zayne
+                  .map((card: CardType) => (
+                    <Card key={(card.name || '').replaceAll(' ', '_')} {...card} />
+                  ))}
+                  {SECTIONS.standard.Rafayel
+                  .map((card: CardType) => (
+                    <Card key={(card.name || '').replaceAll(' ', '_')} {...card} />
+                  ))}
+                  {SECTIONS.standard.Sylus
+                  .map((card: CardType) => (
+                    <Card key={(card.name || '').replaceAll(' ', '_')} {...card} />
+                  ))}
+                  {SECTIONS.standard.Caleb
+                  .map((card: CardType) => (
+                    <Card key={(card.name || '').replaceAll(' ', '_')} {...card} />
                   ))}
               </div>
             </div>
@@ -107,7 +160,7 @@ export default function Home() {
               <BannerTag>Solo</BannerTag>
               <div className='grid grid-cols-[160px_160px] gap-4'>
                 {SECTIONS.solo.map((card: CardType) => (
-                  <Card key={card.name.replaceAll(' ', '_')} {...card} />
+                  <Card key={(card.name || '').replaceAll(' ', '_')} {...card} />
                 ))}
               </div>
             </div>
@@ -115,7 +168,7 @@ export default function Home() {
               <BannerTag>Birthday</BannerTag>
               <div className='grid grid-cols-[160px_160px] gap-4'>
                 {SECTIONS.birthday.map((card: CardType) => (
-                  <Card key={card.name.replaceAll(' ', '_')} {...card} />
+                  <Card key={(card.name || '').replaceAll(' ', '_')} {...card} />
                 ))}
               </div>
             </div>
@@ -126,7 +179,7 @@ export default function Home() {
                 <BannerTag>{banner}</BannerTag>
                 <div className='grid grid-cols-[160px_160px] grid-rows-[max-content] gap-4'>
                   {SECTIONS.limited[banner]?.map?.((card: CardType) => (
-                    <Card key={card.name.replaceAll(' ', '_')} {...card} />
+                    <Card key={(card.name || '').replaceAll(' ', '_')} {...card} />
                   ))}
                 </div>
               </div>

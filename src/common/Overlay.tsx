@@ -1,6 +1,6 @@
 'use client';
 
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import Image from 'next/image';
 
 interface OverlayProps {
@@ -39,7 +39,11 @@ const setCardsInStorage = (cards: string[]) => {
 };
 
 const Overlay = ({ link, name }: OverlayProps) => {
-  const [isOwned, setIsOwned] = useState(hasCard(name));
+  const [isOwned, setIsOwned] = useState(false);
+
+  useEffect(() => {
+    setIsOwned(hasCard(name));
+  }, [name]);
 
   const handleClick = () => {
     const updatedIsOwned = !isOwned;
@@ -55,7 +59,7 @@ const Overlay = ({ link, name }: OverlayProps) => {
     }
     setCardsInStorage(ownedCards);
   };
-  
+
   return (
     <>
       <button

@@ -1,10 +1,11 @@
 export interface CardType {
-  type: string;
-  name: string;
-  banner: string;
-  stellacrum: string;
-  order: number | string;
-  time: string;
-  character: string;
-  yt_video: string;
+  [key: string]: string | undefined;
+  type?: string | undefined;
+  name?: string | undefined;
+  banner?: string | undefined;
+  stellacrum?: string | undefined;
+  order?: string | undefined;
+  time?: string | undefined;
+  character?: string | undefined;
+  yt_video?: string | undefined;
 }
