@@ -14,7 +14,7 @@ const Card = ({ name, type, stellacrum, character, yt_video }: CardType) => {
   const url = `/${folder}/${character}_${encodeURIComponent((name || '').replaceAll(' ', '_').replaceAll("'", ''))}.jpeg`;
   return (
     <div className="flex flex-col items-center gap-2">
-      <div className='group relative h-55 w-40 [&:has([data-locked="true"])_img]:grayscale-85'>
+      <div className='group relative h-55 w-40 [&:has([data-locked="true"])_img]:grayscale-85 rounded-md overflow-hidden'>
         <Image alt={name || ''} src={url} fill style={{ objectFit: 'cover' }} />
         <Image
           style={{ background: 'transparent' }}
