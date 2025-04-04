@@ -34,7 +34,7 @@ const DownloadBtn = () => {
     <button
       disabled={loading}
       type='button'
-      className='fixed right-8 bottom-8 cursor-pointer rounded-full bg-sky-950 p-4 text-white transition-colors hover:bg-sky-800 disabled:cursor-not-allowed disabled:bg-slate-400'
+      className='fixed right-8 bottom-8 cursor-pointer rounded-full bg-sky-950 p-4 text-white transition-colors hover:bg-sky-800 disabled:cursor-not-allowed disabled:bg-slate-400 z-50'
       onClick={handleDownload}
     >
       {loading ? 'Generating...' : 'Download Image'}
