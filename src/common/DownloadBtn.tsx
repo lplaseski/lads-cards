@@ -9,7 +9,7 @@ const DownloadBtn = () => {
     const filterNode = node as HTMLElement;
     const exclusionClasses = ['exclude-from-download', 'hidden'];
     return !exclusionClasses.some((classname) =>
-      filterNode?.classList?.contains(classname)
+      filterNode?.classList?.contains?.(classname)
     );
   };
   const handleDownload = () => {
