@@ -22,6 +22,8 @@ const Card = ({ name, type, stellacrum, character, yt_video }: CardType) => {
           src={url}
           fill
           style={{ objectFit: 'cover' }}
+          priority
+          sizes="320px"
         />
         <Image
           style={{ background: 'transparent' }}
