@@ -1,7 +1,8 @@
 'use client';
 
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
+import Modal from './YoutubeModal';
 
 interface OverlayProps {
   link: string;
@@ -40,12 +41,14 @@ const setCardsInStorage = (cards: string[]) => {
 
 const Overlay = ({ link, name }: OverlayProps) => {
   const [isOwned, setIsOwned] = useState(false);
+  const [isWanted, setIsWanted] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     setIsOwned(hasCard(name));
   }, [name]);
 
-  const handleClick = () => {
+  const handleToggle = () => {
     const updatedIsOwned = !isOwned;
     setIsOwned(updatedIsOwned);
     const ownedCards = getCardsFromStorage();
@@ -60,12 +63,16 @@ const Overlay = ({ link, name }: OverlayProps) => {
     setCardsInStorage(ownedCards);
   };
 
+  const handleModalToggle = useCallback(() => {
+    setIsModalOpen((v) => !v);
+  }, []);
+
   return (
     <>
       <button
-        onClick={handleClick}
+        onClick={handleToggle}
         data-locked={!isOwned}
-        className='absolute inset-0 flex cursor-pointer flex-col items-center justify-center text-lg font-bold text-white'
+        className='peer absolute inset-0 z-10 flex cursor-pointer flex-col items-center justify-center text-lg font-bold text-white'
       >
         {!isOwned && (
           <Image
@@ -76,16 +83,42 @@ const Overlay = ({ link, name }: OverlayProps) => {
             alt='Not Owned'
           />
         )}
+        {isWanted && !isOwned && (
+          <div className='absolute top-7 left-[-35px] w-full rotate-[-45deg] bg-white text-black'>
+            Wanted
+          </div>
+        )}
       </button>
       {!isOwned && link && (
-        <a
-          className='exclude-from-download absolute bottom-4 left-4 rounded-xl bg-red-500 p-2 leading-none text-white hover:bg-red-600'
-          href={link}
-          target='_blank'
-          rel='noopener noreferrer'
+        <button
+          onClick={handleModalToggle}
+          className='peer exclude-from-download absolute top-2 right-2 z-10 cursor-pointer rounded-md bg-red-500 p-1 text-xs leading-none text-white hover:bg-red-600'
         >
-          YT
-        </a>
+          View on YouTube
+        </button>
+      )}
+      {!isOwned && (
+        <label
+          htmlFor={`wanted-${name.replaceAll(' ', '_')}`}
+          className='exclude-from-download hover:bg-sky-6000 invisible absolute right-8 bottom-2 z-10 flex cursor-pointer items-center gap-2 rounded-md bg-sky-800 p-2 text-xs leading-none text-white peer-hover:visible hover:visible'
+        >
+          <input
+            checked={isWanted}
+            id={`wanted-${name.replaceAll(' ', '_')}`}
+            type='checkbox'
+            onChange={(e) => {
+              e.stopPropagation();
+              setIsWanted(!!e.target.checked);
+            }}
+          />{' '}
+          <span>Set Wanted</span>
+        </label>
+      )}
+      {isModalOpen && (
+        <Modal
+          videoUrl={link.replace('watch?v=', 'embed/')}
+          onClose={handleModalToggle}
+        />
       )}
     </>
   );

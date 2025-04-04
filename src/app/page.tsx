@@ -40,7 +40,7 @@ interface Sections {
     Rafayel: CardType[];
     Sylus: CardType[];
     Caleb: CardType[];
-  }
+  };
 }
 
 export default async function Home() {
@@ -59,7 +59,7 @@ export default async function Home() {
       Rafayel: [],
       Sylus: [],
       Caleb: [],
-    }
+    },
   };
 
   cards.forEach((card) => {
@@ -107,8 +107,8 @@ export default async function Home() {
             style={{ objectFit: 'cover', objectPosition: '0 20%' }}
           />
         </div>
-        <div className='flex p-4 gap-4 items-center justify-center bg-sky-950 text-4xl font-serif text-white uppercase'>
-        <Image
+        <div className='flex items-center justify-center gap-4 bg-sky-950 p-4 font-serif text-4xl text-white uppercase'>
+          <Image
             alt='Love and Deepspace'
             height={150}
             width={150}
@@ -124,7 +124,10 @@ export default async function Home() {
                 {Object.values(SECTIONS.myth.limited)
                   .flat()
                   .map((card: CardType) => (
-                    <Card key={(card.name || '').replaceAll(' ', '_')} {...card} />
+                    <Card
+                      key={(card.name || '').replaceAll(' ', '_')}
+                      {...card}
+                    />
                   ))}
               </div>
             </div>
@@ -134,33 +137,46 @@ export default async function Home() {
                 {Object.values(SECTIONS.myth.standard)
                   .flat()
                   .map((card: CardType) => (
-                    <Card key={(card.name || '').replaceAll(' ', '_')} {...card} />
+                    <Card
+                      key={(card.name || '').replaceAll(' ', '_')}
+                      {...card}
+                    />
                   ))}
               </div>
             </div>
             <div className='flex gap-8'>
               <BannerTag>Standard</BannerTag>
               <div className='grid grid-cols-[160px_160px_160px_160px] gap-4'>
-                {SECTIONS.standard.Xavier
-                  .map((card: CardType) => (
-                    <Card key={(card.name || '').replaceAll(' ', '_')} {...card} />
-                  ))}
-                  {SECTIONS.standard.Zayne
-                  .map((card: CardType) => (
-                    <Card key={(card.name || '').replaceAll(' ', '_')} {...card} />
-                  ))}
-                  {SECTIONS.standard.Rafayel
-                  .map((card: CardType) => (
-                    <Card key={(card.name || '').replaceAll(' ', '_')} {...card} />
-                  ))}
-                  {SECTIONS.standard.Sylus
-                  .map((card: CardType) => (
-                    <Card key={(card.name || '').replaceAll(' ', '_')} {...card} />
-                  ))}
-                  {SECTIONS.standard.Caleb
-                  .map((card: CardType) => (
-                    <Card key={(card.name || '').replaceAll(' ', '_')} {...card} />
-                  ))}
+                {SECTIONS.standard.Xavier.map((card: CardType) => (
+                  <Card
+                    key={(card.name || '').replaceAll(' ', '_')}
+                    {...card}
+                  />
+                ))}
+                {SECTIONS.standard.Zayne.map((card: CardType) => (
+                  <Card
+                    key={(card.name || '').replaceAll(' ', '_')}
+                    {...card}
+                  />
+                ))}
+                {SECTIONS.standard.Rafayel.map((card: CardType) => (
+                  <Card
+                    key={(card.name || '').replaceAll(' ', '_')}
+                    {...card}
+                  />
+                ))}
+                {SECTIONS.standard.Sylus.map((card: CardType) => (
+                  <Card
+                    key={(card.name || '').replaceAll(' ', '_')}
+                    {...card}
+                  />
+                ))}
+                {SECTIONS.standard.Caleb.map((card: CardType) => (
+                  <Card
+                    key={(card.name || '').replaceAll(' ', '_')}
+                    {...card}
+                  />
+                ))}
               </div>
             </div>
           </div>
@@ -169,7 +185,10 @@ export default async function Home() {
               <BannerTag>Solo</BannerTag>
               <div className='grid grid-cols-[160px_160px] gap-4'>
                 {SECTIONS.solo.map((card: CardType) => (
-                  <Card key={(card.name || '').replaceAll(' ', '_')} {...card} />
+                  <Card
+                    key={(card.name || '').replaceAll(' ', '_')}
+                    {...card}
+                  />
                 ))}
               </div>
             </div>
@@ -177,7 +196,10 @@ export default async function Home() {
               <BannerTag>Birthday</BannerTag>
               <div className='grid grid-cols-[160px_160px] gap-4'>
                 {SECTIONS.birthday.map((card: CardType) => (
-                  <Card key={(card.name || '').replaceAll(' ', '_')} {...card} />
+                  <Card
+                    key={(card.name || '').replaceAll(' ', '_')}
+                    {...card}
+                  />
                 ))}
               </div>
             </div>
@@ -188,7 +210,10 @@ export default async function Home() {
                 <BannerTag>{banner}</BannerTag>
                 <div className='grid grid-cols-[160px_160px] grid-rows-[max-content] gap-4'>
                   {SECTIONS.limited[banner]?.map?.((card: CardType) => (
-                    <Card key={(card.name || '').replaceAll(' ', '_')} {...card} />
+                    <Card
+                      key={(card.name || '').replaceAll(' ', '_')}
+                      {...card}
+                    />
                   ))}
                 </div>
               </div>
