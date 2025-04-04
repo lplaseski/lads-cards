@@ -208,7 +208,7 @@ export default async function Home() {
             {BANNERS.map((banner) => (
               <div key={banner} className='flex gap-8'>
                 <BannerTag>{banner}</BannerTag>
-                <div className='grid grid-cols-[160px_160px] grid-rows-[max-content] gap-4'>
+                <div className='grid grid-cols-[160px_160px] grid-rows-[max-content] gap-4 content-start'>
                   {SECTIONS.limited[banner]?.map?.((card: CardType) => (
                     <Card
                       key={(card.name || '').replaceAll(' ', '_')}
@@ -220,6 +220,9 @@ export default async function Home() {
             ))}
           </div>
         </div>
+      <footer className="flex w-full items-center justify-center gap-4 bg-sky-950 p-4 font-serif text-2xl text-white uppercase">
+        Inspired by the infographic created by <a href="https://x.com/YiZhan_05">@YiZhan_05</a> on Twitter
+      </footer>
       </main>
       <DownloadBtn />
     </div>
