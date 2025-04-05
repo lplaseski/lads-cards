@@ -9,10 +9,10 @@ interface OverlayProps {
   name: string;
 }
 
-const getCardsFromStorage = () => {
+const getCardsFromStorage = (key:string) => {
   try {
     const ownedCards = JSON.parse(
-      window.localStorage.getItem('ownedCards') || '[]'
+      window.localStorage.getItem(key) || '[]'
     );
     return ownedCards;
   } catch (error) {
@@ -21,9 +21,9 @@ const getCardsFromStorage = () => {
   }
 };
 
-const hasCard = (name: string) => {
+const hasCard = (key:string, name: string) => {
   try {
-    const ownedCards = getCardsFromStorage();
+    const ownedCards = getCardsFromStorage(key);
     return ownedCards.includes(name);
   } catch (error) {
     console.error('Error parsing owned cards from localStorage:', error);
@@ -31,9 +31,9 @@ const hasCard = (name: string) => {
   }
 };
 
-const setCardsInStorage = (cards: string[]) => {
+const setCardsInStorage = (key:string, cards: string[]) => {
   try {
-    window.localStorage.setItem('ownedCards', JSON.stringify(cards));
+    window.localStorage.setItem(key, JSON.stringify(cards));
   } catch (error) {
     console.error('Error setting owned cards to localStorage:', error);
   }
@@ -45,13 +45,14 @@ const Overlay = ({ link, name }: OverlayProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    setIsOwned(hasCard(name));
+    setIsOwned(hasCard('ownedCards', name));
+    setIsWanted(hasCard('wantedCards', name));
   }, [name]);
 
   const handleToggle = () => {
     const updatedIsOwned = !isOwned;
     setIsOwned(updatedIsOwned);
-    const ownedCards = getCardsFromStorage();
+    const ownedCards = getCardsFromStorage('ownedCards');
     if (updatedIsOwned) {
       ownedCards.push(name);
     } else {
@@ -60,7 +61,22 @@ const Overlay = ({ link, name }: OverlayProps) => {
         ownedCards.splice(index, 1);
       }
     }
-    setCardsInStorage(ownedCards);
+    setCardsInStorage('ownedCards', ownedCards);
+  };
+
+  const handleWantedToggle = (e:  React.ChangeEvent<HTMLInputElement >) => {
+    const updatedIsWanted = e.target.checked;
+    setIsWanted(updatedIsWanted);
+    const wantedCards = getCardsFromStorage('wantedCards');
+    if (updatedIsWanted) {
+      wantedCards.push(name);
+    } else {
+      const index = wantedCards.indexOf(name);
+      if (index > -1) {
+        wantedCards.splice(index, 1);
+      }
+    }
+    setCardsInStorage('wantedCards', wantedCards);
   };
 
   const handleModalToggle = useCallback(() => {
@@ -106,10 +122,7 @@ const Overlay = ({ link, name }: OverlayProps) => {
             checked={isWanted}
             id={`wanted-${name.replaceAll(' ', '_')}`}
             type='checkbox'
-            onChange={(e) => {
-              e.stopPropagation();
-              setIsWanted(!!e.target.checked);
-            }}
+            onChange={handleWantedToggle}
           />{' '}
           <span>Set Wanted</span>
         </label>
