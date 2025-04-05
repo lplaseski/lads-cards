@@ -57,7 +57,7 @@ export default async function FourStar() {
   return (
     <div className='flex min-h-screen min-w-fit items-center justify-center gap-16 bg-black p-20 font-[family-name:var(--font-noto-sans)]'>
       <main
-        className='flex w-full min-w-336 flex-col border-2 bg-white'
+        className='flex w-full min-w-236 flex-col border-2 bg-white'
         style={{ minHeight: 'calc(100vh - 160px)' }}
       >
         <div className='relative flex h-120 w-full'>
@@ -75,7 +75,7 @@ export default async function FourStar() {
             width={150}
             src='/logo.svg'
           />
-          <span>5 Star Memory Chart</span>
+          <span>4 Star Memory Chart</span>
         </div>
         <div className='flex flex-col items-start justify-start gap-4 p-4'>
           {Object.entries(SECTIONS).map(([character, cards]) => (
