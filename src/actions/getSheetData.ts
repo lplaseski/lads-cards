@@ -1,7 +1,7 @@
 import { CardType } from '@/common/types';
 import { google } from 'googleapis';
 
-const getSheetData = async () => {
+const getSheetData = async (sheet: string) => {
   const encodedKey = Buffer.from(
     process.env.GOOGLE_KEY || '',
     'base64'
@@ -19,16 +19,17 @@ const getSheetData = async () => {
     //Function for spreadsheetId
     const spreadsheetId = process.env.CARD_SHEET_ID || '';
     //Function for getting the sheet
-    const sheet = await sheets.spreadsheets.values.get({
+    const sheetData = await sheets.spreadsheets.values.get({
       auth,
       spreadsheetId,
-      range: 'Sheet1',
+      range: sheet,
     });
     if (!sheet) {
       throw new Error('Sheet not found');
     }
-    //Function for getting the values
-    const values = sheet.data.values || [];
+
+    // Format the data assuming the first row contains keys
+    const values = sheetData.data.values || [];
     const keys = values[0];
     const data = values.slice(1).map((row) => {
       const obj: CardType = {};

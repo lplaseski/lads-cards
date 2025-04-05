@@ -9,9 +9,14 @@ const Card = ({ name, type, stellacrum, character, yt_video }: CardType) => {
     folder = 'standard';
   } else if (type?.includes('myth')) {
     folder = 'myths';
+  } else if (type === 'four-star') {
+    folder = 'four-star';
   }
 
-  const url = `/${folder}/${character}_${encodeURIComponent((name || '').replaceAll(' ', '_').replaceAll("'", ''))}.jpeg`;
+  const extension = type === 'four-star' ? 'png' : 'jpeg';
+
+  const url = `/${folder}/${character}_${encodeURIComponent((name || '').replaceAll(' ', '_').replaceAll("'", ''))}.${extension}`;
+  
   return (
     <div className='flex flex-col items-center gap-2'>
       <div className='relative h-55 w-40 overflow-hidden rounded-md'>
@@ -23,7 +28,7 @@ const Card = ({ name, type, stellacrum, character, yt_video }: CardType) => {
           fill
           style={{ objectFit: 'cover' }}
           priority
-          sizes="320px"
+          sizes='320px'
         />
         <Image
           style={{ background: 'transparent' }}

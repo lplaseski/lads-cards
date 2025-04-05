@@ -9,11 +9,9 @@ interface OverlayProps {
   name: string;
 }
 
-const getCardsFromStorage = (key:string) => {
+const getCardsFromStorage = (key: string) => {
   try {
-    const ownedCards = JSON.parse(
-      window.localStorage.getItem(key) || '[]'
-    );
+    const ownedCards = JSON.parse(window.localStorage.getItem(key) || '[]');
     return ownedCards;
   } catch (error) {
     console.error('Error parsing owned cards from localStorage:', error);
@@ -21,7 +19,7 @@ const getCardsFromStorage = (key:string) => {
   }
 };
 
-const hasCard = (key:string, name: string) => {
+const hasCard = (key: string, name: string) => {
   try {
     const ownedCards = getCardsFromStorage(key);
     return ownedCards.includes(name);
@@ -31,7 +29,7 @@ const hasCard = (key:string, name: string) => {
   }
 };
 
-const setCardsInStorage = (key:string, cards: string[]) => {
+const setCardsInStorage = (key: string, cards: string[]) => {
   try {
     window.localStorage.setItem(key, JSON.stringify(cards));
   } catch (error) {
@@ -64,7 +62,7 @@ const Overlay = ({ link, name }: OverlayProps) => {
     setCardsInStorage('ownedCards', ownedCards);
   };
 
-  const handleWantedToggle = (e:  React.ChangeEvent<HTMLInputElement >) => {
+  const handleWantedToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
     const updatedIsWanted = e.target.checked;
     setIsWanted(updatedIsWanted);
     const wantedCards = getCardsFromStorage('wantedCards');
