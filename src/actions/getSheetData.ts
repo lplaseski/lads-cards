@@ -1,4 +1,4 @@
-import { CardType } from '@/common/types';
+import { CardType, MLQCCardType } from '@/common/types';
 import { google } from 'googleapis';
 
 const getSheetData = async (sheet: string) => {
@@ -32,7 +32,12 @@ const getSheetData = async (sheet: string) => {
     const values = sheetData.data.values || [];
     const keys = values[0];
     const data = values.slice(1).map((row) => {
-      const obj: CardType = {};
+      let obj;
+      if (sheet === 'Sheet3') {
+        obj = {} as MLQCCardType;
+      } else {
+        obj = {} as CardType;
+      }
       keys.forEach((key, index) => {
         obj[key] = row[index];
       });

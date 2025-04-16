@@ -16,11 +16,11 @@ const Card = ({ name, type, stellacrum, character, yt_video }: CardType) => {
   const extension = type === 'four-star' ? 'png' : 'jpeg';
 
   const url = `/${folder}/${character}_${encodeURIComponent((name || '').replaceAll(' ', '_').replaceAll("'", ''))}.${extension}`;
-  
+
   return (
     <div className='flex flex-col items-center gap-2'>
       <div className='relative h-55 w-40 overflow-hidden rounded-md'>
-        <Overlay name={name || ''} link={yt_video || ''} />
+        <Overlay name={name || ''} link={yt_video || ''} showWanted showOwned />
         <Image
           className='peer-data-[locked=true]:grayscale-85'
           alt={name || ''}

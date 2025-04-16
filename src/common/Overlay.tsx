@@ -3,10 +3,17 @@
 import React, { Fragment, useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Modal from './YoutubeModal';
+import setViewed from '@/actions/setViewed';
 
 interface OverlayProps {
   link: string;
   name: string;
+  index?: number;
+  viewed?: number;
+  sheet?: string;
+  showWanted?: boolean;
+  showViewed?: boolean;
+  showOwned?: boolean;
 }
 
 const getCardsFromStorage = (key: string) => {
@@ -37,10 +44,11 @@ const setCardsInStorage = (key: string, cards: string[]) => {
   }
 };
 
-const Overlay = ({ link, name }: OverlayProps) => {
+const Overlay = ({ link, name, index, viewed, sheet, showWanted = false, showViewed = false, showOwned = false }: OverlayProps) => {
   const [isOwned, setIsOwned] = useState(false);
   const [isWanted, setIsWanted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isViewed, setIsViewed] = useState(!!viewed);
 
   useEffect(() => {
     setIsOwned(hasCard('ownedCards', name));
@@ -81,6 +89,19 @@ const Overlay = ({ link, name }: OverlayProps) => {
     setIsModalOpen((v) => !v);
   }, []);
 
+  const handleSetViewed = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const updatedViewed = e.target.checked;
+    if (index !== undefined && !!sheet) {
+      setIsViewed(updatedViewed);
+      try {
+        await setViewed(sheet, index, updatedViewed ? 1 : 0);
+      } catch (error) {
+        console.error('Error updating:', error)
+        setIsViewed(!updatedViewed);
+      }
+    }
+  }
+
   return (
     <>
       <button
@@ -88,7 +109,7 @@ const Overlay = ({ link, name }: OverlayProps) => {
         data-locked={!isOwned}
         className='peer absolute inset-0 z-10 flex cursor-pointer flex-col items-center justify-center text-lg font-bold text-white'
       >
-        {!isOwned && (
+        {showOwned && !isOwned && (
           <Image
             src='/icons/lock.svg'
             width={50}
@@ -102,6 +123,11 @@ const Overlay = ({ link, name }: OverlayProps) => {
             Wanted
           </div>
         )}
+        {!!isViewed && (
+          <div className='absolute top-7 left-[-35px] w-full rotate-[-45deg] bg-white text-black'>
+            Viewed
+          </div>
+        )}
       </button>
       {!isOwned && link && (
         <button
@@ -111,7 +137,7 @@ const Overlay = ({ link, name }: OverlayProps) => {
           View on YouTube
         </button>
       )}
-      {!isOwned && (
+      {!isOwned && showWanted && (
         <label
           htmlFor={`wanted-${name.replaceAll(' ', '_')}`}
           className='exclude-from-download hover:bg-sky-6000 invisible absolute right-8 bottom-2 z-10 flex cursor-pointer items-center gap-2 rounded-md bg-sky-800 p-2 text-xs leading-none text-white peer-hover:visible hover:visible'
@@ -125,6 +151,18 @@ const Overlay = ({ link, name }: OverlayProps) => {
           <span>Set Wanted</span>
         </label>
       )}
+        {showViewed && (<label
+          htmlFor={`viewed-${name.replaceAll(' ', '_')}`}
+          className='exclude-from-download hover:bg-gray-600 invisible absolute right-8 bottom-2 z-10 flex cursor-pointer items-center gap-2 rounded-md bg-gray-800 p-2 text-xs leading-none text-white peer-hover:visible hover:visible'
+        >
+          <input
+            checked={isViewed}
+            id={`viewed-${name.replaceAll(' ', '_')}`}
+            type='checkbox'
+            onChange={handleSetViewed}
+          />{' '}
+          <span>Set Viewed</span>
+        </label>)}
       {isModalOpen && (
         <Modal
           videoUrl={link.replace('watch?v=', 'embed/')}

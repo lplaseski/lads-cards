@@ -79,23 +79,23 @@ export default async function FourStar() {
         </div>
         <div className='flex flex-col items-start justify-start gap-4 p-4'>
           {Object.entries(SECTIONS).map(([character, cards]) => (
-            <div key={character} className='flex gap-4 w-full'>
+            <div key={character} className='flex w-full gap-4'>
               <BannerTag>{character}</BannerTag>
-              <div className="flex flex-col gap-4 grow">
-              {Object.entries(cards).map(([time, cardList]) => (
-                <div key={time} className='flex gap-4 grow'>
-                  <BannerTag>{time}</BannerTag>
-                  <div className='grid grid-cols-[repeat(auto-fill,160px)] gap-4 w-full'>
-                  {cardList.map((card) => (
-                    <Card
-                      type="four-star"
-                      key={(card.name || '').replaceAll(' ', '_')}
-                      {...card}
-                    />
-                  ))}
+              <div className='flex grow flex-col gap-4'>
+                {Object.entries(cards).map(([time, cardList]) => (
+                  <div key={time} className='flex grow gap-4'>
+                    <BannerTag>{time}</BannerTag>
+                    <div className='grid w-full grid-cols-[repeat(auto-fill,160px)] gap-4'>
+                      {cardList.map((card) => (
+                        <Card
+                          type='four-star'
+                          key={(card.name || '').replaceAll(' ', '_')}
+                          {...card}
+                        />
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
               </div>
             </div>
           ))}
