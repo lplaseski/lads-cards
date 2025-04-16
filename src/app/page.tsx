@@ -63,7 +63,7 @@ export default async function Home() {
   };
 
   cards.forEach((card) => {
-    if (card?.type?.startsWith('myth')) {
+    if (typeof card.type === 'string' && card?.type?.startsWith('myth')) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const [_, type] = card.type.split('_');
       if (card.character) {
