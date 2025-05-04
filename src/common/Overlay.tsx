@@ -44,7 +44,16 @@ const setCardsInStorage = (key: string, cards: string[]) => {
   }
 };
 
-const Overlay = ({ link, name, index, viewed, sheet, showWanted = false, showViewed = false, showOwned = false }: OverlayProps) => {
+const Overlay = ({
+  link,
+  name,
+  index,
+  viewed,
+  sheet,
+  showWanted = false,
+  showViewed = false,
+  showOwned = false,
+}: OverlayProps) => {
   const [isOwned, setIsOwned] = useState(false);
   const [isWanted, setIsWanted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -96,11 +105,11 @@ const Overlay = ({ link, name, index, viewed, sheet, showWanted = false, showVie
       try {
         await setViewed(sheet, index, updatedViewed ? 1 : 0);
       } catch (error) {
-        console.error('Error updating:', error)
+        console.error('Error updating:', error);
         setIsViewed(!updatedViewed);
       }
     }
-  }
+  };
 
   return (
     <>
@@ -151,9 +160,10 @@ const Overlay = ({ link, name, index, viewed, sheet, showWanted = false, showVie
           <span>Set Wanted</span>
         </label>
       )}
-        {showViewed && (<label
+      {showViewed && (
+        <label
           htmlFor={`viewed-${name.replaceAll(' ', '_')}`}
-          className='exclude-from-download hover:bg-gray-600 invisible absolute right-8 bottom-2 z-10 flex cursor-pointer items-center gap-2 rounded-md bg-gray-800 p-2 text-xs leading-none text-white peer-hover:visible hover:visible'
+          className='exclude-from-download invisible absolute right-8 bottom-2 z-10 flex cursor-pointer items-center gap-2 rounded-md bg-gray-800 p-2 text-xs leading-none text-white peer-hover:visible hover:visible hover:bg-gray-600'
         >
           <input
             checked={isViewed}
@@ -162,7 +172,8 @@ const Overlay = ({ link, name, index, viewed, sheet, showWanted = false, showVie
             onChange={handleSetViewed}
           />{' '}
           <span>Set Viewed</span>
-        </label>)}
+        </label>
+      )}
       {isModalOpen && (
         <Modal
           videoUrl={link.replace('watch?v=', 'embed/')}

@@ -27,7 +27,7 @@ const setViewed = async (sheet: string, index: number, viewed: number) => {
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values: [[viewed]],
-      }
+      },
     });
     if (!sheet) {
       throw new Error('Sheet not found');

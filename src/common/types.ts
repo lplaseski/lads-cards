@@ -21,3 +21,15 @@ export interface MLQCCardType {
   index?: number | undefined;
   viewed?: number | undefined;
 }
+
+export interface StatsType {
+  [key: string]: string | number | undefined;
+  name?: string | undefined;
+  stellacrum?: string | undefined;
+  time?: string | undefined;
+  character?: string | undefined;
+  stars?: string | undefined;
+  owner?: string | undefined;
+  level?: string | undefined;
+  release?: string | undefined;
+}

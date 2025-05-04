@@ -9,7 +9,7 @@ const MLQCPage = async () => {
   const groups = cards.reduce(
     (acc, card, index) => {
       const { date, banner, viewed } = card;
-      const cardWithIndex = {...card, viewed: Number(viewed|| '0'), index}
+      const cardWithIndex = { ...card, viewed: Number(viewed || '0'), index };
       if (date && banner) {
         if (acc?.[date]?.[banner]) {
           acc[date][banner].push(cardWithIndex);
@@ -44,46 +44,49 @@ const MLQCPage = async () => {
             <div
               key={group.date}
               className='flex flex-col items-center justify-center gap-4'
-            > 
-              <h1 className='text-2xl font-bold text-center bg-cyan-950 text-white p-1 rounded-2xl w-full'>{group.date}</h1>
-              <div className="flex flex-row flex-wrap gap-4">
-                
-              {Object.entries(group.cards).map(([banner, cards]) => (
-                <div className='flex flex-col gap-4' key={banner}>
-                  <h2 className='text-xl font-bold text-center bg-fuchsia-900 text-white px-5 py-1 rounded-2xl'>{banner}</h2>
-                  <div className="flex flex-row flex-wrap gap-4 justify-center">
-                    {cards.map((card) => (
+            >
+              <h1 className='w-full rounded-2xl bg-cyan-950 p-1 text-center text-2xl font-bold text-white'>
+                {group.date}
+              </h1>
+              <div className='flex flex-row flex-wrap gap-4'>
+                {Object.entries(group.cards).map(([banner, cards]) => (
+                  <div className='flex flex-col gap-4' key={banner}>
+                    <h2 className='rounded-2xl bg-fuchsia-900 px-5 py-1 text-center text-xl font-bold text-white'>
+                      {banner}
+                    </h2>
+                    <div className='flex flex-row flex-wrap justify-center gap-4'>
+                      {cards.map((card) => (
                         <div
-                        className='flex flex-col justify-center text-center align-middle'
-                        key={`${card.character}_${card.card}`}
+                          className='flex flex-col justify-center text-center align-middle'
+                          key={`${card.character}_${card.card}`}
                         >
-                        <div className='relative overflow-hidden'>
+                          <div className='relative overflow-hidden'>
                             <Image
-                            width={1024}
-                            height={1564}
-                            src={
+                              width={1024}
+                              height={1564}
+                              src={
                                 `/mlqc/${card.character}_${card.card?.replaceAll(' ', '_').replaceAll("'", '%27')}.png` ||
                                 ''
-                            }
-                            alt={card.name || ''}
-                            className='h-65 w-40 object-cover'
+                              }
+                              alt={card.name || ''}
+                              className='h-65 w-40 object-cover'
                             />
                             <Overlay
-                            showViewed
-                            name={card.card || ''}
-                            link={card.yt_link || ''}
-                            index={card.index}
-                            viewed={card.viewed}
-                            sheet="Sheet3"
+                              showViewed
+                              name={card.card || ''}
+                              link={card.yt_link || ''}
+                              index={card.index}
+                              viewed={card.viewed}
+                              sheet='Sheet3'
                             />
+                          </div>
+                          <p>{card?.card}</p>
+                          <p>{card?.name}</p>
                         </div>
-                        <p>{card?.card}</p>
-                        <p>{card?.name}</p>
-                        </div>
-                    ))}
+                      ))}
                     </div>
-                </div>
-              ))}
+                  </div>
+                ))}
               </div>
             </div>
           ))}
