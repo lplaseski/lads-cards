@@ -65,6 +65,7 @@ const Overlay = ({
   }, [name]);
 
   const handleToggle = () => {
+    if (!showViewed) return;
     const updatedIsOwned = !isOwned;
     setIsOwned(updatedIsOwned);
     const ownedCards = getCardsFromStorage('ownedCards');

@@ -4,6 +4,14 @@ import React from 'react';
 import Image from 'next/image';
 import Overlay from '@/common/Overlay';
 
+const Colours: Record<string, string> = {
+  Kiro: '#f1c766',
+  Gavin: '#8dbddd',
+  Victor: '#e7787f',
+  Lucien: '#8f92c4',
+  Shaw: '#9d9ca1'
+}
+
 const MLQCPage = async () => {
   const cards = await getSheetData('Sheet3');
   const groups = cards.reduce(
@@ -57,9 +65,10 @@ const MLQCPage = async () => {
                     <div className='flex flex-row flex-wrap justify-center gap-4'>
                       {cards.map((card) => (
                         <div
-                          className='flex flex-col justify-center text-center align-middle'
-                          key={`${card.character}_${card.card}`}
+                        className='flex flex-col justify-center text-center align-middle gap-2'
+                        key={`${card.character}_${card.card}`}
                         >
+                          {card?.character && <p style={{ backgroundColor: card.character ? Colours[card.character] : '#9d9ca1' }} className='w-full rounded-2xl p-1 text-center text-2xl font-bold text-white'>{card?.character}</p>}
                           <div className='relative overflow-hidden'>
                             <Image
                               width={1024}
@@ -69,10 +78,10 @@ const MLQCPage = async () => {
                                 ''
                               }
                               alt={card.name || ''}
-                              className='h-65 w-40 object-cover'
+                              className='h-90 w-60 object-cover'
                             />
                             <Overlay
-                              showViewed
+                              showViewed={false}
                               name={card.card || ''}
                               link={card.yt_link || ''}
                               index={card.index}
