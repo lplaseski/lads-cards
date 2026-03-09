@@ -51,12 +51,12 @@ const MLQCPage = async () => {
           {sortedGroups.map((group) => (
             <div
               key={group.date}
-              className='flex flex-col items-center justify-center gap-2'
+              className='flex flex-col items-center justify-center gap-2 grow'
             >
               <h1 className='w-full rounded-md bg-cyan-950 p-1 text-center text-md font-bold text-white'>
                 {group.date}
               </h1>
-              <div className='flex flex-row flex-wrap gap-2'>
+              <div className='flex flex-row flex-wrap gap-2 w-full justify-center p-3 bg-gray-100 rounded-md'>
                 {Object.entries(group.cards).map(([banner, cards]) => (
                   <div className='flex flex-col gap-2' key={banner}>
                     <h2 className='rounded-md bg-fuchsia-900 px-5 py-1 text-center text-md font-bold text-white'>
@@ -89,8 +89,10 @@ const MLQCPage = async () => {
                               sheet='Sheet3'
                             />
                           </div>
-                          <p>{card?.card}</p>
-                          <p>{card?.name || 'TBA'}</p>
+                          <div className="flex flex-col grow gap-3 items-center p-2 bg-white rounded-md">
+                            <p className="font-bold">{card?.card}</p>
+                            <p>{card?.name || 'TBA'}</p>
+                          </div>
                         </div>
                       ))}
                     </div>
