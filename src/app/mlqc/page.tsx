@@ -42,33 +42,33 @@ const MLQCPage = async () => {
   }));
 
   return (
-    <div className='flex min-h-screen min-w-fit items-center justify-center gap-16 bg-black p-20 font-[family-name:var(--font-noto-sans)]'>
+    <div className='flex min-h-screen min-w-fit items-center justify-center gap-8 bg-black p-20 font-[family-name:var(--font-noto-sans)]'>
       <main
         className='flex w-full min-w-236 flex-col border-2 bg-white'
         style={{ minHeight: 'calc(100vh - 160px)' }}
       >
-        <div className='flex flex-wrap items-center justify-center gap-4 p-10'>
+        <div className='flex flex-wrap items-center justify-center gap-6 p-10'>
           {sortedGroups.map((group) => (
             <div
               key={group.date}
-              className='flex flex-col items-center justify-center gap-4'
+              className='flex flex-col items-center justify-center gap-2'
             >
-              <h1 className='w-full rounded-2xl bg-cyan-950 p-1 text-center text-2xl font-bold text-white'>
+              <h1 className='w-full rounded-md bg-cyan-950 p-1 text-center text-md font-bold text-white'>
                 {group.date}
               </h1>
-              <div className='flex flex-row flex-wrap gap-4'>
+              <div className='flex flex-row flex-wrap gap-2'>
                 {Object.entries(group.cards).map(([banner, cards]) => (
-                  <div className='flex flex-col gap-4' key={banner}>
-                    <h2 className='rounded-2xl bg-fuchsia-900 px-5 py-1 text-center text-xl font-bold text-white'>
+                  <div className='flex flex-col gap-2' key={banner}>
+                    <h2 className='rounded-md bg-fuchsia-900 px-5 py-1 text-center text-md font-bold text-white'>
                       {banner}
                     </h2>
-                    <div className='flex flex-row flex-wrap justify-center gap-4'>
+                    <div className='flex flex-row flex-wrap justify-center gap-2'>
                       {cards.map((card) => (
                         <div
                         className='flex flex-col justify-center text-center align-middle gap-2'
                         key={`${card.character}_${card.card}`}
                         >
-                          {card?.character && <p style={{ backgroundColor: card.character ? Colours[card.character] : '#9d9ca1' }} className='w-full rounded-2xl p-1 text-center text-2xl font-bold text-white'>{card?.character}</p>}
+                          {card?.character && <p style={{ backgroundColor: card.character ? Colours[card.character] : '#9d9ca1' }} className='w-full rounded-md p-1 text-center text-md font-bold text-white'>{card?.character}</p>}
                           <div className='relative overflow-hidden'>
                             <Image
                               width={1024}
@@ -90,7 +90,7 @@ const MLQCPage = async () => {
                             />
                           </div>
                           <p>{card?.card}</p>
-                          <p>{card?.name}</p>
+                          <p>{card?.name || 'TBA'}</p>
                         </div>
                       ))}
                     </div>
