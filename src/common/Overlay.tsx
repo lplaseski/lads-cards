@@ -112,6 +112,16 @@ const Overlay = ({
     }
   };
 
+  const getVideoUrl = (url: string) => {
+    const urlObj = new URL(url);
+    if (urlObj.searchParams.get('list')) {
+      const listId = urlObj.searchParams.get('list');
+      return `https://www.youtube.com/embed/videoseries?list=${listId}`;
+    }
+    const videoId = urlObj.searchParams.get('v');
+    return `https://www.youtube.com/embed/${videoId}`;
+  }
+  
   return (
     <>
       <button
@@ -177,7 +187,7 @@ const Overlay = ({
       )}
       {isModalOpen && (
         <Modal
-          videoUrl={link.replace('watch?v=', 'embed/')}
+          videoUrl={getVideoUrl(link)}
           onClose={handleModalToggle}
         />
       )}

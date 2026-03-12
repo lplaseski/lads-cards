@@ -66,19 +66,22 @@ const MLQCPage = async () => {
                       {cards.map((card) => (
                         <div
                         className='flex flex-col justify-center text-center align-middle gap-2'
-                        key={`${card.character}_${card.card}`}
+                        key={card?.banner === 'Major Event' ? `${card.card}` : `${card.character}_${card.card}`}
                         >
                           {card?.character && <p style={{ backgroundColor: card.character ? Colours[card.character] : '#9d9ca1' }} className='w-full rounded-md p-1 text-center text-md font-bold text-white'>{card?.character}</p>}
+                          {card?.banner === 'Major Event' && <p className='w-full rounded-md p-1 text-center text-md font-bold text-white bg-purple-900'>Chapter Release</p>}
                           <div className='relative overflow-hidden'>
                             <Image
-                              width={1024}
+                              width={card.banner === 'Major Event' ? 1564 : 1024}
                               height={1564}
                               src={
-                                `/mlqc/${card.character}_${card.card?.replaceAll(' ', '_').replaceAll("'", '%27')}.png` ||
-                                ''
+                                card.banner === 'Major Event' ?
+                                `/mlqc/${card.card?.replaceAll(' ', '_').replaceAll("'", '%27')}.png` :
+                                (`/mlqc/${card.character}_${card.card?.replaceAll(' ', '_').replaceAll("'", '%27')}.png` ||
+                                '')
                               }
                               alt={card.name || ''}
-                              className='h-90 w-60 object-cover'
+                              className={card.banner === 'Major Event' ? 'h-90 w-96 object-cover' : 'h-90 w-60 object-cover'}
                             />
                             <Overlay
                               showViewed={false}
