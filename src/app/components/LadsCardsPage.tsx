@@ -36,6 +36,9 @@ interface Sections {
   };
   solo: CardType[];
   birthday: CardType[];
+  free: {
+    [key: string]: CardType[];
+  };
   limited: {
     [key: string]: CardType[];
   };
@@ -58,6 +61,7 @@ export default async function Home() {
     },
     solo: [],
     birthday: [],
+    free: {},
     limited: {},
     standard: {
       Xavier: [],
@@ -79,6 +83,10 @@ export default async function Home() {
         }
         SECTIONS.myth.standard[card.character].push(card);
       }
+    } else if (card.type === 'free') {
+      const key = (card.banner || card.name || '').trim();
+      if (!SECTIONS.free[key]) SECTIONS.free[key] = [];
+      SECTIONS.free[key].push(card);
     } else if (card.banner === 'solo') {
       SECTIONS.solo.push(card);
     } else if (card.banner === 'birthday') {
@@ -100,16 +108,26 @@ export default async function Home() {
     }
   });
   const sortByDate = (arr: CardType[]) =>
-    arr.sort((a, b) => (a.release_date || '').localeCompare(b.release_date || ''));
+    arr.sort((a, b) =>
+      (a.release_date || '').localeCompare(b.release_date || '')
+    );
 
   sortByDate(SECTIONS.solo);
   sortByDate(SECTIONS.birthday);
   Object.values(SECTIONS.standard).forEach(sortByDate);
   Object.values(SECTIONS.limited).forEach(sortByDate);
+  Object.values(SECTIONS.free).forEach(sortByDate);
+  SECTIONS.free = Object.fromEntries(
+    Object.entries(SECTIONS.free).sort(([, a], [, b]) =>
+      (a[0]?.release_date || '').localeCompare(b[0]?.release_date || '')
+    )
+  );
 
   const sortMythCards = (arr: CardType[]) =>
     arr.sort((a, b) => {
-      const dateCompare = (a.release_date || '').localeCompare(b.release_date || '');
+      const dateCompare = (a.release_date || '').localeCompare(
+        b.release_date || ''
+      );
       if (dateCompare !== 0) return dateCompare;
       return Number(a.order || 0) - Number(b.order || 0);
     });
@@ -117,7 +135,7 @@ export default async function Home() {
   const sortMythSection = (section: CardList) => {
     Object.values(section).forEach(sortMythCards);
     const sorted = Object.entries(section).sort(([, a], [, b]) =>
-      (a[0]?.release_date || '').localeCompare(b[0]?.release_date || ''),
+      (a[0]?.release_date || '').localeCompare(b[0]?.release_date || '')
     );
     return Object.fromEntries(sorted);
   };
@@ -135,9 +153,10 @@ export default async function Home() {
   };
 
   const limitedMythGroups = groupByBanner(SECTIONS.myth.limited);
-  const standardMythGroups = Object.values(SECTIONS.myth.standard).flatMap(groupByBanner);
+  const standardMythGroups = Object.values(SECTIONS.myth.standard).flatMap(
+    groupByBanner
+  );
 
-  console.log(SECTIONS);
   return (
     <div className='flex min-h-screen flex-col items-center bg-black p-4 font-[family-name:var(--font-noto-sans)] sm:p-10 lg:p-20'>
       <main className='flex w-full flex-col border-2 bg-white'>
@@ -202,6 +221,22 @@ export default async function Home() {
               ))}
             </div>
           </div>
+          <div className='flex gap-4'>
+            {Object.entries(SECTIONS.free).map(([bannerName, bannerCards]) => (
+              <div key={bannerName} className='flex gap-4'>
+                <BannerTag>{bannerName}</BannerTag>
+                <div className='grid grid-cols-[192px_192px_192px] grid-rows-[max-content] content-start gap-4'>
+                  {bannerCards.map?.((card: CardType) => (
+                    <Card
+                      key={(card.name || '').replaceAll(' ', '_')}
+                      {...card}
+                    />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
           <div className='flex gap-4'>
             <BannerTag>Solo</BannerTag>
             <div className='grid flex-1 grid-cols-[repeat(auto-fill,192px)] gap-4'>
