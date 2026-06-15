@@ -1,12 +1,10 @@
 'use client';
 
-import React, { Fragment, useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import Modal from './YoutubeModal';
 import setViewed from '@/actions/setViewed';
 
 interface OverlayProps {
-  link: string;
   name: string;
   index?: number;
   viewed?: number;
@@ -45,7 +43,6 @@ const setCardsInStorage = (key: string, cards: string[]) => {
 };
 
 const Overlay = ({
-  link,
   name,
   index,
   viewed,
@@ -56,7 +53,6 @@ const Overlay = ({
 }: OverlayProps) => {
   const [isOwned, setIsOwned] = useState(false);
   const [isWanted, setIsWanted] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isViewed, setIsViewed] = useState(!!viewed);
 
   useEffect(() => {
@@ -65,8 +61,23 @@ const Overlay = ({
   }, [name]);
 
   const handleToggle = () => {
-    if (!showViewed) return;
+    if (!showOwned) return;
     const updatedIsOwned = !isOwned;
+    setIsOwned(updatedIsOwned);
+    const ownedCards = getCardsFromStorage('ownedCards');
+    if (updatedIsOwned) {
+      ownedCards.push(name);
+    } else {
+      const index = ownedCards.indexOf(name);
+      if (index > -1) {
+        ownedCards.splice(index, 1);
+      }
+    }
+    setCardsInStorage('ownedCards', ownedCards);
+  };
+
+  const handleOwnedToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const updatedIsOwned = e.target.checked;
     setIsOwned(updatedIsOwned);
     const ownedCards = getCardsFromStorage('ownedCards');
     if (updatedIsOwned) {
@@ -95,10 +106,6 @@ const Overlay = ({
     setCardsInStorage('wantedCards', wantedCards);
   };
 
-  const handleModalToggle = useCallback(() => {
-    setIsModalOpen((v) => !v);
-  }, []);
-
   const handleSetViewed = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const updatedViewed = e.target.checked;
     if (index !== undefined && !!sheet) {
@@ -112,16 +119,6 @@ const Overlay = ({
     }
   };
 
-  const getVideoUrl = (url: string) => {
-    const urlObj = new URL(url);
-    if (urlObj.searchParams.get('list')) {
-      const listId = urlObj.searchParams.get('list');
-      return `https://www.youtube.com/embed/videoseries?list=${listId}`;
-    }
-    const videoId = urlObj.searchParams.get('v');
-    return `https://www.youtube.com/embed/${videoId}`;
-  }
-  
   return (
     <>
       <button
@@ -139,7 +136,7 @@ const Overlay = ({
           />
         )}
         {isWanted && !isOwned && (
-          <div className='absolute top-7 left-[-35px] w-full rotate-[-45deg] bg-white text-black'>
+          <div className='absolute top-7 left-[-40px] w-full rotate-[-45deg] bg-white text-black'>
             Wanted
           </div>
         )}
@@ -149,27 +146,37 @@ const Overlay = ({
           </div>
         )}
       </button>
-      {!isOwned && link && (
-        <button
-          onClick={handleModalToggle}
-          className='peer exclude-from-download absolute top-2 right-2 z-10 cursor-pointer rounded-md bg-red-500 p-1 text-xs leading-none text-white hover:bg-red-600'
-        >
-          View on YouTube
-        </button>
-      )}
-      {!isOwned && showWanted && (
-        <label
-          htmlFor={`wanted-${name.replaceAll(' ', '_')}`}
-          className='exclude-from-download hover:bg-sky-6000 invisible absolute right-8 bottom-2 z-10 flex cursor-pointer items-center gap-2 rounded-md bg-sky-800 p-2 text-xs leading-none text-white peer-hover:visible hover:visible'
-        >
-          <input
-            checked={isWanted}
-            id={`wanted-${name.replaceAll(' ', '_')}`}
-            type='checkbox'
-            onChange={handleWantedToggle}
-          />{' '}
-          <span>Set Wanted</span>
-        </label>
+      {(showOwned || (!isOwned && showWanted)) && (
+        <div className='exclude-from-download invisible absolute right-2 bottom-2 left-2 z-10 flex flex-col gap-1 peer-hover:visible hover:visible'>
+          {showOwned && (
+            <label
+              htmlFor={`owned-${name.replaceAll(' ', '_')}`}
+              className='flex cursor-pointer items-center gap-2 rounded-md bg-emerald-700 p-2 text-xs leading-none text-white hover:bg-emerald-600'
+            >
+              <input
+                checked={isOwned}
+                id={`owned-${name.replaceAll(' ', '_')}`}
+                type='checkbox'
+                onChange={handleOwnedToggle}
+              />{' '}
+              <span>Owned</span>
+            </label>
+          )}
+          {!isOwned && showWanted && (
+            <label
+              htmlFor={`wanted-${name.replaceAll(' ', '_')}`}
+              className='flex cursor-pointer items-center gap-2 rounded-md bg-sky-800 p-2 text-xs leading-none text-white hover:bg-sky-700'
+            >
+              <input
+                checked={isWanted}
+                id={`wanted-${name.replaceAll(' ', '_')}`}
+                type='checkbox'
+                onChange={handleWantedToggle}
+              />{' '}
+              <span>Set Wanted</span>
+            </label>
+          )}
+        </div>
       )}
       {showViewed && (
         <label
@@ -184,12 +191,6 @@ const Overlay = ({
           />{' '}
           <span>Set Viewed</span>
         </label>
-      )}
-      {isModalOpen && (
-        <Modal
-          videoUrl={getVideoUrl(link)}
-          onClose={handleModalToggle}
-        />
       )}
     </>
   );
