@@ -221,7 +221,7 @@ export default async function Home() {
               ))}
             </div>
           </div>
-          <div className='flex gap-4'>
+          <div className='flex flex-wrap gap-4'>
             {Object.entries(SECTIONS.free).map(([bannerName, bannerCards]) => (
               <div key={bannerName} className='flex gap-4'>
                 <BannerTag>{bannerName}</BannerTag>
