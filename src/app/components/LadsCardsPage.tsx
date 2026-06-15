@@ -4,6 +4,7 @@ import getSheetData from '@/actions/getSheetData';
 
 import { CardType } from '../../common/types';
 import Card from '@/common/Card';
+import MythGroupCard from '@/common/MythGroupCard';
 import BannerTag from '@/common/BannerTag';
 
 const BANNERS = [
@@ -123,6 +124,19 @@ export default async function Home() {
   sortMythCards(SECTIONS.myth.limited);
   SECTIONS.myth.standard = sortMythSection(SECTIONS.myth.standard);
 
+  const groupByBanner = (arr: CardType[]): CardType[][] => {
+    const map: Record<string, CardType[]> = {};
+    for (const card of arr) {
+      const key = card.banner || card.release_date || card.name || '';
+      if (!map[key]) map[key] = [];
+      map[key].push(card);
+    }
+    return Object.values(map);
+  };
+
+  const limitedMythGroups = groupByBanner(SECTIONS.myth.limited);
+  const standardMythGroups = Object.values(SECTIONS.myth.standard).flatMap(groupByBanner);
+
   console.log(SECTIONS);
   return (
     <div className='flex min-h-screen flex-col items-center bg-black p-4 font-[family-name:var(--font-noto-sans)] sm:p-10 lg:p-20'>
@@ -148,26 +162,24 @@ export default async function Home() {
         <div className='flex flex-col gap-8 p-4 sm:p-6'>
           <div className='flex gap-4'>
             <BannerTag>Limited Myths</BannerTag>
-            <div className='grid flex-1 grid-cols-[repeat(auto-fill,192px)] gap-4'>
-              {SECTIONS.myth.limited.map((card: CardType) => (
-                <Card
-                  key={(card.name || '').replaceAll(' ', '_')}
-                  {...card}
+            <div className='flex flex-1 flex-wrap gap-4'>
+              {limitedMythGroups.map((group) => (
+                <MythGroupCard
+                  key={group[0].banner || group[0].name || ''}
+                  cards={group}
                 />
               ))}
             </div>
           </div>
           <div className='flex gap-4'>
             <BannerTag>Standard Myths</BannerTag>
-            <div className='grid flex-1 grid-cols-[repeat(auto-fill,192px)] gap-4'>
-              {Object.values(SECTIONS.myth.standard)
-                .flat()
-                .map((card: CardType) => (
-                  <Card
-                    key={(card.name || '').replaceAll(' ', '_')}
-                    {...card}
-                  />
-                ))}
+            <div className='flex flex-1 flex-wrap gap-4'>
+              {standardMythGroups.map((group) => (
+                <MythGroupCard
+                  key={group[0].banner || group[0].name || ''}
+                  cards={group}
+                />
+              ))}
             </div>
           </div>
           <div className='flex gap-4'>
