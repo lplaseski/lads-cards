@@ -1,69 +1,26 @@
 'use client';
 
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import Image from 'next/image';
-import Modal from '@/common/YoutubeModal';
-import { CATEGORIES, CHARACTERS, getVideoUrl } from '@/common/cardUtils';
-
-export interface GalleryCard {
-  name: string;
-  character: string;
-  category: string;
-  imageUrl: string;
-  stellacrum?: string;
-  time?: string;
-  banner?: string;
-  releaseDate: string;
-  order: number;
-  ytVideo?: string;
-}
+import Link from 'next/link';
+import { CATEGORIES, CHARACTERS } from '@/common/cardUtils';
+import { GalleryCard, getCardHref } from '@/common/galleryCards';
+import { Stars, TimeIcon } from '@/common/MemoryIcons';
 
 type SortKey = 'release' | 'name';
 
 const ACTIVE_TAB_CLASSES =
   'bg-gradient-to-b from-[#3a4456] to-[#232b38] text-white shadow-[0_6px_10px_-4px_rgba(20,25,40,0.5)] after:absolute after:inset-x-0 after:-bottom-px after:h-[2px] after:bg-[#d8b878]';
 
-const Stars = () => (
-  <span className='text-[11px] leading-none tracking-[-1px] text-white [text-shadow:0_0_3px_rgba(255,214,120,0.9)]'>
-    ★★★★★
-  </span>
-);
-
-const TimeIcon = ({ time }: { time?: string }) => {
-  if (time === 'solar') {
-    return (
-      <svg viewBox='0 0 24 24' className='h-6 w-6 fill-amber-100'>
-        <circle cx='12' cy='12' r='4.5' />
-        <path
-          d='M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1'
-          className='stroke-amber-100'
-          strokeWidth='1.8'
-          strokeLinecap='round'
-        />
-      </svg>
-    );
-  }
-  if (time === 'lunar') {
-    return (
-      <svg viewBox='0 0 24 24' className='h-6 w-6 fill-amber-100'>
-        <path d='M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z' />
-      </svg>
-    );
-  }
-  return null;
-};
-
 const MemoryTile = ({
   card,
   priority,
-  onSelect,
 }: {
   card: GalleryCard;
   priority: boolean;
-  onSelect: (card: GalleryCard) => void;
 }) => (
-  <button
-    onClick={() => onSelect(card)}
+  <Link
+    href={getCardHref(card)}
     className='group flex cursor-pointer flex-col items-center gap-1.5 text-center'
   >
     <div className='w-full bg-gradient-to-b from-[#f6e7b8] via-[#c9a462] to-[#f1dca4] p-[2px] shadow-[0_3px_8px_rgba(60,50,80,0.25)]'>
@@ -94,80 +51,8 @@ const MemoryTile = ({
     <p className='line-clamp-2 text-[13px] leading-tight text-slate-700'>
       {card.character}: {card.name}
     </p>
-  </button>
+  </Link>
 );
-
-const DetailSheet = ({
-  card,
-  onClose,
-}: {
-  card: GalleryCard;
-  onClose: () => void;
-}) => {
-  const [isVideoOpen, setIsVideoOpen] = useState(false);
-  const toggleVideo = useCallback(() => setIsVideoOpen((v) => !v), []);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && !isVideoOpen) onClose();
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [onClose, isVideoOpen]);
-
-  return (
-    <div className='fixed inset-0 z-40 flex justify-center'>
-      <div className='absolute inset-0 bg-black/50' onClick={onClose} />
-      <div className='relative mt-auto w-full max-w-[480px] rounded-t-3xl bg-gradient-to-b from-white to-[#eceaf1] px-5 pt-3 pb-8 shadow-2xl'>
-        <div className='mx-auto mb-4 h-1 w-10 rounded-full bg-slate-300' />
-        <div className='flex gap-4'>
-          <div className='w-32 shrink-0 bg-gradient-to-b from-[#f6e7b8] via-[#c9a462] to-[#f1dca4] p-[2px]'>
-            <div className='relative aspect-[48/65] w-full overflow-hidden'>
-              <Image
-                alt={card.name}
-                src={card.imageUrl}
-                fill
-                sizes='128px'
-                className='object-cover'
-              />
-            </div>
-          </div>
-          <div className='flex min-w-0 flex-col gap-1'>
-            <p className='font-serif text-sm tracking-wide text-slate-500 uppercase'>
-              {card.character}
-            </p>
-            <h2 className='text-xl leading-tight font-semibold text-slate-800'>
-              {card.name}
-            </h2>
-            <p className='text-sm text-slate-500'>
-              {card.category}
-              {card.banner && !['solo', 'birthday'].includes(card.banner)
-                ? ` · ${card.banner}`
-                : ''}
-            </p>
-            {card.releaseDate && (
-              <p className='text-sm text-slate-500'>{card.releaseDate}</p>
-            )}
-          </div>
-        </div>
-        {card.ytVideo && (
-          <button
-            onClick={toggleVideo}
-            className='mt-5 flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white py-2.5 text-sm text-slate-600'
-          >
-            <svg viewBox='0 0 24 24' className='h-4 w-4 fill-red-500'>
-              <path d='M8 5v14l11-7z' />
-            </svg>
-            Watch on YouTube
-          </button>
-        )}
-      </div>
-      {isVideoOpen && card.ytVideo && (
-        <Modal videoUrl={getVideoUrl(card.ytVideo)} onClose={toggleVideo} />
-      )}
-    </div>
-  );
-};
 
 const CharacterTab = ({
   label,
@@ -191,7 +76,6 @@ const MemoriesGallery = ({ cards }: { cards: GalleryCard[] }) => {
   const [category, setCategory] = useState('all');
   const [sortKey, setSortKey] = useState<SortKey>('release');
   const [descending, setDescending] = useState(true);
-  const [selected, setSelected] = useState<GalleryCard | null>(null);
 
   const visibleCards = useMemo(() => {
     const filtered = cards.filter(
@@ -308,7 +192,6 @@ const MemoriesGallery = ({ cards }: { cards: GalleryCard[] }) => {
                   key={`${card.character}-${card.name}`}
                   card={card}
                   priority={i < 9}
-                  onSelect={setSelected}
                 />
               ))}
             </div>
@@ -324,10 +207,6 @@ const MemoriesGallery = ({ cards }: { cards: GalleryCard[] }) => {
             </a>
           </footer>
         </main>
-
-        {selected && (
-          <DetailSheet card={selected} onClose={() => setSelected(null)} />
-        )}
       </div>
     </div>
   );
