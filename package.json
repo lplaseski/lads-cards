@@ -11,6 +11,7 @@
     "format:fix": "prettier --write ."
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "chart.js": "^4.4.9",
     "googleapis": "^148.0.0",
     "modern-screenshot": "^4.6.0",

@@ -1,9 +1,14 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import getGalleryCards from '@/actions/getGalleryCards';
-import { formatReleaseDate, getCardSlug } from '@/common/galleryCards';
+import {
+  formatReleaseDate,
+  getCardHref,
+  getCardSlug,
+} from '@/common/galleryCards';
 import { Stars, TimeIcon } from '@/common/MemoryIcons';
+import BackButton from './BackButton';
 import VideoCircle from './VideoCircle';
 
 export async function generateStaticParams() {
@@ -14,18 +19,54 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function MemoryPage({
-  params,
-}: {
-  params: Promise<{ character: string; slug: string }>;
-}) {
+type Params = Promise<{ character: string; slug: string }>;
+
+async function findCard(params: Params) {
   const { character, slug } = await params;
   const cards = await getGalleryCards();
-  const card = cards.find(
+  return cards.find(
     (c) =>
       c.character.toLowerCase() === character.toLowerCase() &&
       getCardSlug(c.name) === slug
   );
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Params;
+}): Promise<Metadata> {
+  const card = await findCard(params);
+  if (!card) return {};
+
+  const title = `${card.character}: ${card.name}`;
+  const description = `${card.character}'s ${card.category} memory "${card.name}" in Love and Deepspace${
+    card.releaseDate ? `, released ${formatReleaseDate(card.releaseDate)}` : ''
+  }.`;
+  const url = getCardHref(card);
+
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: 'article',
+      title,
+      description,
+      url,
+      images: [{ url: card.imageUrl, alt: title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [card.imageUrl],
+    },
+  };
+}
+
+export default async function MemoryPage({ params }: { params: Params }) {
+  const card = await findCard(params);
   if (!card) notFound();
 
   return (
@@ -43,21 +84,7 @@ export default async function MemoryPage({
           <div className='absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-[#1c1622] via-[#1c1622]/85 to-transparent' />
         </div>
 
-        <Link
-          href='/'
-          aria-label='Back to memories'
-          className='absolute top-8 left-5 z-10 flex h-10 w-10 items-center justify-center rounded-full text-white drop-shadow hover:bg-white/10'
-        >
-          <svg
-            viewBox='0 0 20 20'
-            className='h-6 w-6 fill-none stroke-current'
-            strokeWidth='1.6'
-            strokeLinecap='round'
-            strokeLinejoin='round'
-          >
-            <path d='M12.5 4l-6 6 6 6M9 7l-3 3 3 3' />
-          </svg>
-        </Link>
+        <BackButton />
 
         <div className='relative mt-auto px-5 pt-40 pb-10'>
           <Stars className='text-2xl' />

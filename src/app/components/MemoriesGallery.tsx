@@ -1,13 +1,52 @@
 'use client';
 
-import React, { useMemo, useState } from 'react';
+import React, { Suspense, useCallback, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { CATEGORIES, CHARACTERS } from '@/common/cardUtils';
 import { GalleryCard, getCardHref } from '@/common/galleryCards';
 import { Stars, TimeIcon } from '@/common/MemoryIcons';
+import { markCameFromGallery } from '@/common/galleryHistory';
 
 type SortKey = 'release' | 'name';
+
+interface Filters {
+  character: string | null;
+  category: string;
+  sortKey: SortKey;
+  descending: boolean;
+}
+
+const matchOption = (options: string[], value?: string | null) =>
+  options.find((o) => o.toLowerCase() === value?.toLowerCase());
+
+const parseFilters = (params: URLSearchParams | null): Filters => ({
+  character: matchOption(CHARACTERS, params?.get('character')) ?? null,
+  category: matchOption(CATEGORIES, params?.get('category')) ?? 'all',
+  sortKey: params?.get('sort') === 'name' ? 'name' : 'release',
+  descending: params?.get('order') !== 'asc',
+});
+
+// Only non-default values are written, so the unfiltered gallery stays at /
+const writeFilters = ({
+  character,
+  category,
+  sortKey,
+  descending,
+}: Filters) => {
+  const params = new URLSearchParams();
+  if (character) params.set('character', character.toLowerCase());
+  if (category !== 'all') params.set('category', category.toLowerCase());
+  if (sortKey !== 'release') params.set('sort', sortKey);
+  if (!descending) params.set('order', 'asc');
+  const query = params.toString();
+  window.history.replaceState(
+    null,
+    '',
+    query ? `?${query}` : window.location.pathname
+  );
+};
 
 const ACTIVE_TAB_CLASSES =
   'bg-gradient-to-b from-[#3a4456] to-[#232b38] text-white shadow-[0_6px_10px_-4px_rgba(20,25,40,0.5)] after:absolute after:inset-x-0 after:-bottom-px after:h-[2px] after:bg-[#d8b878]';
@@ -21,6 +60,7 @@ const MemoryTile = ({
 }) => (
   <Link
     href={getCardHref(card)}
+    onClick={markCameFromGallery}
     className='group flex cursor-pointer flex-col items-center gap-1.5 text-center'
   >
     <div className='w-full bg-gradient-to-b from-[#f6e7b8] via-[#c9a462] to-[#f1dca4] p-[2px] shadow-[0_3px_8px_rgba(60,50,80,0.25)]'>
@@ -71,11 +111,19 @@ const CharacterTab = ({
   </button>
 );
 
-const MemoriesGallery = ({ cards }: { cards: GalleryCard[] }) => {
-  const [character, setCharacter] = useState<string | null>(null);
-  const [category, setCategory] = useState('all');
-  const [sortKey, setSortKey] = useState<SortKey>('release');
-  const [descending, setDescending] = useState(true);
+const GalleryView = ({
+  cards,
+  params,
+}: {
+  cards: GalleryCard[];
+  params: URLSearchParams | null;
+}) => {
+  const filters = useMemo(() => parseFilters(params), [params]);
+  const { character, category, sortKey, descending } = filters;
+  const update = useCallback(
+    (patch: Partial<Filters>) => writeFilters({ ...filters, ...patch }),
+    [filters]
+  );
 
   const visibleCards = useMemo(() => {
     const filtered = cards.filter(
@@ -116,7 +164,7 @@ const MemoriesGallery = ({ cards }: { cards: GalleryCard[] }) => {
 
         <nav className='relative flex items-stretch border-b border-slate-300/70 bg-white/30 pr-4 backdrop-blur-sm'>
           <button
-            onClick={() => setCharacter(null)}
+            onClick={() => update({ character: null })}
             className={`relative flex cursor-pointer items-center gap-2 px-5 font-serif text-[17px] font-bold tracking-wide transition-colors ${character === null ? ACTIVE_TAB_CLASSES : 'text-slate-700'} hover:bg-slate-200`}
           >
             <svg
@@ -141,7 +189,7 @@ const MemoriesGallery = ({ cards }: { cards: GalleryCard[] }) => {
                 <CharacterTab
                   label={name}
                   active={character === name}
-                  onClick={() => setCharacter(name)}
+                  onClick={() => update({ character: name })}
                 />
               </div>
             ))}
@@ -150,7 +198,7 @@ const MemoriesGallery = ({ cards }: { cards: GalleryCard[] }) => {
 
         <div className='relative flex items-center justify-end gap-2 px-4 pt-4 pb-3'>
           <button
-            onClick={() => setDescending((d) => !d)}
+            onClick={() => update({ descending: !descending })}
             aria-label={descending ? 'Sort ascending' : 'Sort descending'}
             className='flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-slate-300 bg-white/60 text-slate-600 hover:border-slate-600 hover:bg-white/25'
           >
@@ -167,7 +215,7 @@ const MemoriesGallery = ({ cards }: { cards: GalleryCard[] }) => {
           <PillSelect
             label='Category'
             value={category}
-            onChange={setCategory}
+            onChange={(v) => update({ category: v })}
             options={[
               { value: 'all', label: 'All Types' },
               ...CATEGORIES.map((c) => ({ value: c, label: c })),
@@ -176,7 +224,7 @@ const MemoriesGallery = ({ cards }: { cards: GalleryCard[] }) => {
           <PillSelect
             label='Sort by'
             value={sortKey}
-            onChange={(v) => setSortKey(v as SortKey)}
+            onChange={(v) => update({ sortKey: v as SortKey })}
             options={[
               { value: 'release', label: 'Release' },
               { value: 'name', label: 'Name' },
@@ -205,6 +253,18 @@ const MemoriesGallery = ({ cards }: { cards: GalleryCard[] }) => {
     </div>
   );
 };
+
+const GalleryWithParams = ({ cards }: { cards: GalleryCard[] }) => (
+  <GalleryView cards={cards} params={useSearchParams()} />
+);
+
+// The page is prerendered, so the static HTML shows the default filters and
+// the URL's filters apply once the client hydrates
+const MemoriesGallery = ({ cards }: { cards: GalleryCard[] }) => (
+  <Suspense fallback={<GalleryView cards={cards} params={null} />}>
+    <GalleryWithParams cards={cards} />
+  </Suspense>
+);
 
 const PillSelect = ({
   label,

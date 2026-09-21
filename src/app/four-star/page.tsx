@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import banner from '../../../public/banner.jpg';
 import getSheetData from '@/actions/getSheetData';
@@ -21,6 +22,14 @@ interface Sections {
   Sylus: CardObj;
   Caleb: CardObj;
 }
+
+export const metadata: Metadata = {
+  title: '4-Star Memory Chart',
+  description:
+    'Every Love and Deepspace 4-star memory card for each love interest, sorted by solar and lunar.',
+  alternates: { canonical: '/four-star' },
+  openGraph: { url: '/four-star' },
+};
 
 export default async function FourStar() {
   const cards = await getSheetData('Sheet2');

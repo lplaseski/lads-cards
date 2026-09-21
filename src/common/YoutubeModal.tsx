@@ -23,17 +23,17 @@ const Modal = ({ videoUrl, onClose }: ModalProps) => {
   return (
     <div className='fixed inset-0 z-50 flex items-center justify-center'>
       <div className='absolute inset-0 bg-black opacity-50' onClick={onClose} />
-      <div className='relative aspect-video h-full w-full rounded-lg bg-white p-3 shadow-lg'>
+      <div className='relative aspect-video h-full w-full rounded-lg bg-white p-2 shadow-lg'>
         <button
           onClick={(e) => {
             e.stopPropagation();
             onClose();
           }}
-          className='absolute top-3 right-4 h-10 w-10 cursor-pointer rounded-2xl bg-white font-bold text-gray-500 opacity-80 hover:text-gray-800'
+          className='absolute top-3 right-4 h-10 w-10 cursor-pointer rounded-full bg-white font-bold text-gray-500 opacity-80 hover:text-gray-800'
         >
           ✕
         </button>
-        <div className='h-full w-full'>
+        <div className='h-full w-full overflow-hidden rounded-lg'>
           <iframe
             src={videoUrl}
             title='YouTube Video'
