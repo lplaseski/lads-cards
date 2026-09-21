@@ -5,14 +5,7 @@ import { CardType } from './types';
 import Image from 'next/image';
 import Overlay from './Overlay';
 import Modal from './YoutubeModal';
-
-const getVideoUrl = (url: string) => {
-  const urlObj = new URL(url);
-  if (urlObj.searchParams.get('list')) {
-    return `https://www.youtube.com/embed/videoseries?list=${urlObj.searchParams.get('list')}`;
-  }
-  return `https://www.youtube.com/embed/${urlObj.searchParams.get('v')}`;
-};
+import { getCardImageUrl, getVideoUrl } from './cardUtils';
 
 const characterColors: Record<string, string> = {
   Zayne: '#3b82f6',
@@ -26,18 +19,7 @@ const Card = ({ name, type, stellacrum, character, yt_video }: CardType) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleModalToggle = useCallback(() => setIsModalOpen((v) => !v), []);
 
-  let folder = 'limited';
-  if (type === 'standard') {
-    folder = 'standard';
-  } else if (type?.includes('myth')) {
-    folder = 'myths';
-  } else if (type === 'four-star') {
-    folder = 'four-star';
-  }
-
-  const extension = type === 'four-star' ? 'png' : 'jpeg';
-
-  const url = `/${folder}/${character}_${encodeURIComponent((name || '').replaceAll(' ', '_').replaceAll("'", ''))}.${extension}`;
+  const url = getCardImageUrl({ name, type, character });
 
   const color = character
     ? (characterColors[character] ?? '#6b7280')
