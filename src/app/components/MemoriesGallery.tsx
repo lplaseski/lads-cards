@@ -32,7 +32,7 @@ const Stars = () => (
 const TimeIcon = ({ time }: { time?: string }) => {
   if (time === 'solar') {
     return (
-      <svg viewBox='0 0 24 24' className='h-4 w-4 fill-amber-100'>
+      <svg viewBox='0 0 24 24' className='h-6 w-6 fill-amber-100'>
         <circle cx='12' cy='12' r='4.5' />
         <path
           d='M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1'
@@ -45,7 +45,7 @@ const TimeIcon = ({ time }: { time?: string }) => {
   }
   if (time === 'lunar') {
     return (
-      <svg viewBox='0 0 24 24' className='h-4 w-4 fill-amber-100'>
+      <svg viewBox='0 0 24 24' className='h-6 w-6 fill-amber-100'>
         <path d='M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z' />
       </svg>
     );
@@ -76,7 +76,7 @@ const MemoryTile = ({
           sizes='(max-width: 480px) 33vw, 150px'
           className='object-cover object-[center_15%] transition-transform duration-300 group-active:scale-95'
         />
-        <div className='absolute inset-x-0 bottom-0 flex h-1/3 items-end justify-between bg-gradient-to-t from-black/70 to-transparent px-1.5 pb-1'>
+        <div className='absolute inset-x-0 bottom-0 flex h-1/3 items-end justify-between bg-gradient-to-t from-black/70 to-transparent px-1 pb-1'>
           <TimeIcon time={card.time} />
           <Stars />
         </div>
@@ -180,7 +180,7 @@ const CharacterTab = ({
 }) => (
   <button
     onClick={onClick}
-    className={`relative w-full py-2 font-serif text-[17px] font-bold tracking-wide transition-colors ${active ? ACTIVE_TAB_CLASSES : 'text-slate-700'}`}
+    className={`relative w-full cursor-pointer py-2 font-serif text-[17px] font-bold tracking-wide transition-colors ${active ? ACTIVE_TAB_CLASSES : 'text-slate-700'} hover:bg-slate-200`}
   >
     {label}
   </button>
@@ -233,7 +233,7 @@ const MemoriesGallery = ({ cards }: { cards: GalleryCard[] }) => {
         <nav className='relative flex items-stretch border-b border-slate-300/70 bg-white/30 pr-4 backdrop-blur-sm'>
           <button
             onClick={() => setCharacter(null)}
-            className={`relative flex items-center gap-2 px-5 font-serif text-[17px] font-bold tracking-wide transition-colors ${character === null ? ACTIVE_TAB_CLASSES : 'text-slate-500'}`}
+            className={`relative flex cursor-pointer items-center gap-2 px-5 font-serif text-[17px] font-bold tracking-wide transition-colors ${character === null ? ACTIVE_TAB_CLASSES : 'text-slate-700'} hover:bg-slate-200`}
           >
             <svg
               viewBox='0 0 20 20'
@@ -268,7 +268,7 @@ const MemoriesGallery = ({ cards }: { cards: GalleryCard[] }) => {
           <button
             onClick={() => setDescending((d) => !d)}
             aria-label={descending ? 'Sort ascending' : 'Sort descending'}
-            className='flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 bg-white/60 text-slate-600'
+            className='flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-slate-300 bg-white/60 text-slate-600 hover:border-slate-600 hover:bg-white/25'
           >
             <svg
               viewBox='0 0 20 20'
@@ -349,7 +349,7 @@ const PillSelect = ({
     <select
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className='h-10 appearance-none rounded-full border border-slate-300 bg-white/60 pr-9 pl-4 font-serif text-[15px] font-bold text-slate-600 outline-none'
+      className='h-10 cursor-pointer appearance-none rounded-full border border-slate-300 bg-white/60 pr-9 pl-4 font-serif text-[15px] font-bold text-slate-600 outline-none hover:border-slate-600 hover:bg-white/25'
     >
       {options.map((o) => (
         <option key={o.value} value={o.value}>
