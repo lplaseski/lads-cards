@@ -20,6 +20,9 @@ export interface GalleryCard {
 
 type SortKey = 'release' | 'name';
 
+const ACTIVE_TAB_CLASSES =
+  'bg-gradient-to-b from-[#3a4456] to-[#232b38] text-white shadow-[0_6px_10px_-4px_rgba(20,25,40,0.5)] after:absolute after:inset-x-0 after:-bottom-px after:h-[2px] after:bg-[#d8b878]';
+
 const Stars = () => (
   <span className='text-[11px] leading-none tracking-[-1px] text-white [text-shadow:0_0_3px_rgba(255,214,120,0.9)]'>
     ★★★★★
@@ -177,7 +180,7 @@ const CharacterTab = ({
 }) => (
   <button
     onClick={onClick}
-    className={`relative py-2 font-serif text-[17px] font-bold tracking-wide transition-colors ${active ? 'bg-gradient-to-b from-[#3a4456] to-[#232b38] text-white shadow-[0_6px_10px_-4px_rgba(20,25,40,0.5)] after:absolute after:inset-x-0 after:-bottom-px after:h-[2px] after:bg-[#d8b878]' : 'text-slate-700'}`}
+    className={`relative w-full py-2 font-serif text-[17px] font-bold tracking-wide transition-colors ${active ? ACTIVE_TAB_CLASSES : 'text-slate-700'}`}
   >
     {label}
   </button>
@@ -208,7 +211,7 @@ const MemoriesGallery = ({ cards }: { cards: GalleryCard[] }) => {
   }, [cards, character, category, sortKey, descending]);
 
   return (
-    <div className='min-h-screen bg-[#d9d7de] font-[family-name:var(--font-noto-sans)]'>
+    <div className='min-h-screen bg-[#d9d7de] text-center font-[family-name:var(--font-noto-sans)]'>
       <div className='relative mx-auto flex min-h-screen w-full max-w-[480px] flex-col overflow-hidden bg-gradient-to-b from-[#f7f6f9] via-[#eeedf2] to-[#e4e2ea] shadow-2xl'>
         <div className='pointer-events-none absolute -top-24 -right-16 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(255,196,214,0.55),transparent_70%)]' />
         <div className='pointer-events-none absolute top-40 -left-24 h-60 w-60 rounded-full bg-[radial-gradient(circle,rgba(190,215,255,0.45),transparent_70%)]' />
@@ -230,7 +233,7 @@ const MemoriesGallery = ({ cards }: { cards: GalleryCard[] }) => {
         <nav className='relative flex items-stretch border-b border-slate-300/70 bg-white/30 pr-4 backdrop-blur-sm'>
           <button
             onClick={() => setCharacter(null)}
-            className={`flex items-center gap-2 px-5 font-serif text-[17px] font-bold tracking-wide ${character === null ? 'text-slate-900' : 'text-slate-500'}`}
+            className={`relative flex items-center gap-2 px-5 font-serif text-[17px] font-bold tracking-wide transition-colors ${character === null ? ACTIVE_TAB_CLASSES : 'text-slate-500'}`}
           >
             <svg
               viewBox='0 0 20 20'
