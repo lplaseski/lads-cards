@@ -200,12 +200,6 @@ const MemoriesGallery = ({ cards }: { cards: GalleryCard[] }) => {
               No memories match these filters.
             </p>
           )}
-          <footer className='mt-10 text-center text-xs text-slate-400'>
-            Inspired by the infographic created by{' '}
-            <a className='underline' href='https://x.com/YiZhan_05'>
-              @YiZhan_05
-            </a>
-          </footer>
         </main>
       </div>
     </div>
