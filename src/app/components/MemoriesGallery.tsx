@@ -75,7 +75,7 @@ const MemoryTile = ({
         />
         <div className='absolute inset-x-0 bottom-0 flex h-1/3 items-end justify-between bg-gradient-to-t from-black/70 to-transparent px-1 pb-1'>
           <TimeIcon time={card.time} />
-          <Stars />
+          <Stars count={card.stars} />
         </div>
         {card.stellacrum && (
           <Image

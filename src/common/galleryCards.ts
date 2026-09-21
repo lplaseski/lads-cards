@@ -2,6 +2,7 @@ export interface GalleryCard {
   name: string;
   character: string;
   category: string;
+  stars: 4 | 5;
   imageUrl: string;
   stellacrum?: string;
   time?: string;

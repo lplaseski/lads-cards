@@ -87,7 +87,7 @@ export default async function MemoryPage({ params }: { params: Params }) {
         <BackButton />
 
         <div className='relative mt-auto px-5 pt-40 pb-10'>
-          <Stars className='text-2xl' />
+          <Stars count={card.stars} className='text-2xl' />
           <p className='mt-2 text-[9px] tracking-[0.25em] text-white/60 uppercase'>
             Memories · {card.category}
           </p>
@@ -108,22 +108,24 @@ export default async function MemoryPage({ params }: { params: Params }) {
             <TimeIcon time={card.time} className='h-5 w-5 shrink-0' />
           </div>
 
-          <div className='mt-3 flex items-center gap-3 border border-white/25 bg-black/20 px-4 py-2 backdrop-blur-sm'>
-            <svg
-              viewBox='0 0 20 20'
-              className='h-4 w-4 shrink-0 fill-none stroke-white/70'
-              strokeWidth='1.5'
-            >
-              <rect x='2.5' y='4' width='15' height='13.5' rx='1.5' />
-              <path d='M2.5 8h15M6.5 2v4M13.5 2v4' />
-            </svg>
-            <span className='text-[11px] tracking-[0.2em] text-white/60 uppercase'>
-              Released
-            </span>
-            <span className='ml-auto text-lg tracking-wide'>
-              {card.releaseDate ? formatReleaseDate(card.releaseDate) : 'TBA'}
-            </span>
-          </div>
+          {(card.releaseDate || card.stars === 5) && (
+            <div className='mt-3 flex items-center gap-3 border border-white/25 bg-black/20 px-4 py-2 backdrop-blur-sm'>
+              <svg
+                viewBox='0 0 20 20'
+                className='h-4 w-4 shrink-0 fill-none stroke-white/70'
+                strokeWidth='1.5'
+              >
+                <rect x='2.5' y='4' width='15' height='13.5' rx='1.5' />
+                <path d='M2.5 8h15M6.5 2v4M13.5 2v4' />
+              </svg>
+              <span className='text-[11px] tracking-[0.2em] text-white/60 uppercase'>
+                Released
+              </span>
+              <span className='ml-auto text-lg tracking-wide'>
+                {card.releaseDate ? formatReleaseDate(card.releaseDate) : 'TBA'}
+              </span>
+            </div>
+          )}
 
           {card.ytVideo && (
             <div className='mt-10 flex justify-center'>

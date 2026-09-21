@@ -1,12 +1,14 @@
 export const Stars = ({
+  count = 5,
   className = 'text-[11px]',
 }: {
+  count?: number;
   className?: string;
 }) => (
   <span
     className={`leading-none tracking-[-1px] text-white [text-shadow:0_0_3px_rgba(255,214,120,0.9)] ${className}`}
   >
-    ★★★★★
+    {'★'.repeat(count)}
   </span>
 );
 

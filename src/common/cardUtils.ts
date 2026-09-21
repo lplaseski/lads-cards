@@ -26,6 +26,7 @@ export const getCardImageUrl = ({ name, type, character }: CardType) => {
 };
 
 export const getCardCategory = ({ type, banner }: CardType) => {
+  if (type === 'four-star') return '4-Star';
   if (type?.startsWith('myth')) return 'Myth';
   if (type === 'free') return 'Free';
   if (banner === 'solo') return 'Solo';
@@ -41,4 +42,5 @@ export const CATEGORIES = [
   'Solo',
   'Birthday',
   'Free',
+  '4-Star',
 ];
