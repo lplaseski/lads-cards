@@ -78,7 +78,7 @@ export default async function MemoryPage({ params }: { params: Params }) {
             src={card.imageUrl}
             fill
             priority
-            sizes='480px'
+            sizes='960px'
             className='object-cover object-top'
           />
           <div className='absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-[#1c1622] via-[#1c1622]/85 to-transparent' />
