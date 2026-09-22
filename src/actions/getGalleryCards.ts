@@ -25,6 +25,20 @@ const toGalleryCards = (rows: CardType[], stars: 4 | 5): GalleryCard[] =>
       };
     });
 
+// A myth's second memory (order 2) shares the video of its first (order 1)
+const shareMythVideos = (cards: GalleryCard[]): GalleryCard[] =>
+  cards.map((card) => {
+    if (card.category !== 'Myth' || card.order !== 2) return card;
+    const first = cards.find(
+      (c) =>
+        c.category === 'Myth' &&
+        c.order === 1 &&
+        c.character === card.character &&
+        c.releaseDate === card.releaseDate
+    );
+    return first?.ytVideo ? { ...card, ytVideo: first.ytVideo } : card;
+  });
+
 // Cached so prerendering every memory page shares one sheet read
 const getGalleryCards = unstable_cache(
   async (): Promise<GalleryCard[]> => {
@@ -33,7 +47,10 @@ const getGalleryCards = unstable_cache(
       getSheetData('Sheet2'),
     ]);
 
-    return [...toGalleryCards(fiveStar, 5), ...toGalleryCards(fourStar, 4)];
+    return shareMythVideos([
+      ...toGalleryCards(fiveStar, 5),
+      ...toGalleryCards(fourStar, 4),
+    ]);
   },
   ['gallery-cards', 'with-four-star'],
   { revalidate: 60 }
