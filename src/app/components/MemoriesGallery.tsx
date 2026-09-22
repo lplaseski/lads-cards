@@ -131,15 +131,19 @@ const GalleryView = ({
         (!character || c.character === character) &&
         (category === 'all' || c.category === category)
     );
-    const sorted = filtered.sort((a, b) => {
+    const compare = (a: GalleryCard, b: GalleryCard) => {
       if (sortKey === 'name') return a.name.localeCompare(b.name);
       return (
         a.releaseDate.localeCompare(b.releaseDate) ||
         a.order - b.order ||
         a.name.localeCompare(b.name)
       );
-    });
-    return descending ? sorted.reverse() : sorted;
+    };
+    // Five stars always come before four stars; direction applies within each group
+    return filtered.sort(
+      (a, b) =>
+        b.stars - a.stars || (descending ? compare(b, a) : compare(a, b))
+    );
   }, [cards, character, category, sortKey, descending]);
 
   return (
